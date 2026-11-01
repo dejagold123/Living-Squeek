@@ -1,20 +1,19 @@
 # Living Squeek
 
-Your Squeek, but alive. It's a little pixel creature that grows as the work behind it settles on Squeekchain. Watching the live wheel is part of it, but live readings don't make your Squeek grow. Only settled work does.
+A Squeek-holder companion app. Your own Squeek evolves in visible stages
+driven only by settled Squeekchain work.
 
-Try it: https://dejagold123.github.io/Living-Squeek/
+- Sepolia testnet, prepared for IMD swarm review, unofficial independent project
+- Settled-only evolution, never live/unsettled work
+- Prepare-only owner actions — never signs, never asks for keys
+- Original code in a single `index.html`; stages, thresholds, and contracts
+  are derived from the published sepolia.json deployment record and the
+  public Squeekchain API, with settled / live-unsettled / simulated states
+  labelled separately throughout
 
-## What's in it
+IMD submission note: no swarm job ID is claimed in this repo yet. The IMD
+job link is added only once a swarm job is opened from the Genesis-profile
+wallet and verified — that step is not part of this build, and nothing here
+should be read as a claim that the swarm has already built or verified it.
 
-- Look up any Squeek by ID, or paste a wallet to see all of its Squeeks.
-- A Squeek in your wallet sleeps. A deposited one is awake.
-- Claim, merge and checkpoint calls come out as unsigned bundles that your own wallet signs.
-- A share card for your Squeek, made right in the browser.
-
-## Good to know
-
-This is a Sepolia testnet project, so nothing here has real value. It's my own build on the public Squeekchain API, not an official Squeekchain product. It doesn't ask for keys and can't sign anything. If a live read fails, you'll see "unknown" rather than a zero.
-
-## Running it
-
-It's one `index.html`. Open it in a browser or host it anywhere static. I use GitHub Pages from the `main` branch.
+Open `index.html` or view the live site via GitHub Pages.
