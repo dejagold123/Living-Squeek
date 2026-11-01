@@ -7,7 +7,8 @@
 <link rel="icon" href="data:,">
 <title>Living Squeek — Evolves Only on Settled Work</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Fonts exactly as loaded by the official site (squeekchain.com): Barlow Condensed 200/300/600, IBM Plex Mono 400, Quicksand 600 -->
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;600&family=IBM+Plex+Mono:wght@400&family=Quicksand:wght@600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#070a07; --panel:#0d120d; --panel2:#111a11; --line:#243324; --ink:#e8f5e8; --muted:#9db89d;
@@ -22,8 +23,8 @@
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:15px;line-height:1.55}
 a{color:var(--green)}
 .wrap{max-width:980px;margin:0 auto;padding:16px 14px 48px}
-h1{font-family:"Press Start 2P",monospace;font-size:clamp(20px,5.5vw,34px);line-height:1.35;margin:10px 0 10px;color:var(--green);text-shadow:3px 3px 0 rgba(57,255,106,.18)}
-h2{font-family:"Press Start 2P",monospace;font-size:13px;line-height:1.6;margin:0 0 12px;color:var(--ink)}
+h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(20px,5.5vw,34px);line-height:1.35;margin:10px 0 10px;color:var(--green);text-shadow:3px 3px 0 rgba(57,255,106,.18)}
+h2{font-family:"Barlow Condensed","Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:-.01em;font-size:13px;line-height:1.6;margin:0 0 12px;color:var(--ink)}
 h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
 p{margin:0 0 10px} .small{font-size:13px;color:var(--muted)} .tiny{font-size:12px;color:var(--muted)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:14px 0}
@@ -33,7 +34,7 @@ p{margin:0 0 10px} .small{font-size:13px;color:var(--muted)} .tiny{font-size:12p
 .dot{width:8px;height:8px;border-radius:50%;background:currentColor;display:inline-block;flex-shrink:0}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .hero-badges{gap:6px}.hero-badges .badge{font-size:10px;padding:4px 8px}
-button{font-family:inherit;font-weight:700;border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:10px;padding:11px 14px;cursor:pointer;min-height:44px}
+button{font-family:inherit;font-weight:600;border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:10px;padding:11px 14px;cursor:pointer;min-height:44px}
 button.primary{background:var(--green);color:#041404;border-color:var(--green)}
 button:active{transform:translateY(1px)} button:focus-visible,input:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 button:disabled{opacity:.45;cursor:not-allowed}
@@ -43,7 +44,7 @@ input,select{font-family:inherit;font-size:16px;padding:12px;border-radius:10px;
 .keys-banner summary{cursor:pointer;list-style:none;font-weight:700}.keys-banner summary::-webkit-details-marker{display:none}.keys-banner summary::after{content:" \25BE";color:var(--muted)}.keys-banner[open] summary::after{content:" \25B4"}
 .keys-banner p{margin:6px 0 0;color:var(--muted)}
 .companion-frame{background:var(--companion-bg);border:3px solid var(--companion);border-radius:18px;padding:14px 12px 12px;box-shadow:0 0 0 4px rgba(233,201,121,.14)}
-.companion-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--companion);font-weight:700;text-align:center;margin-bottom:8px}
+.companion-label{font-family:"Quicksand",system-ui,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--companion);font-weight:700;text-align:center;margin-bottom:8px}
 canvas#hamster,canvas.mini-art{image-rendering:pixelated;background:#080808;border:2px solid #3a2f14;border-radius:10px}
 canvas#hamster{width:100%;max-width:320px;aspect-ratio:1;display:block;margin:0 auto}
 canvas#hamsterSim{width:100%;max-width:190px;aspect-ratio:1;display:block;margin:0 auto;image-rendering:pixelated;background:#080808;border:2px solid var(--cyan);border-radius:10px}
@@ -55,7 +56,7 @@ canvas.mini-art{width:84px;height:84px}
 .bar{height:14px;background:var(--chip);border:1px solid var(--line);border-radius:6px;overflow:hidden} .bar>i{display:block;height:100%;background:var(--green)} .bar>i.pending{background:var(--amber)}
 .stage-track{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:12px 0}
 .stage-cell{border:1px solid var(--line);border-radius:10px;padding:10px 4px;text-align:center;background:var(--panel2);font-size:11px}
-.stage-cell.done{border-color:var(--green)} .stage-cell.now{border-color:var(--green);background:rgba(57,255,106,.12);box-shadow:inset 0 0 0 1px var(--green)} .stage-cell .n{font-family:"Press Start 2P",monospace;font-size:14px;display:block;margin-bottom:6px}
+.stage-cell.done{border-color:var(--green)} .stage-cell.now{border-color:var(--green);background:rgba(57,255,106,.12);box-shadow:inset 0 0 0 1px var(--green)} .stage-cell .n{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:14px;display:block;margin-bottom:6px}
 .timeline{list-style:none;margin:0;padding:0} .timeline li{border-left:3px solid var(--line);padding:0 0 16px 16px;position:relative} .timeline li::before{content:"";position:absolute;left:-7px;top:4px;width:11px;height:11px;background:var(--green);border-radius:2px}
 .timeline li.locked{opacity:.65} .timeline li.locked::before{background:var(--muted)}
 table{width:100%;border-collapse:collapse;font-size:13px} th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top} th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
@@ -76,7 +77,7 @@ footer{margin-top:28px;border-top:1px solid var(--line);padding-top:16px}
   .mobile-hide{display:none}
 }
 .stage-card{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--panel2)}
-.stage-card strong{font-family:"Press Start 2P",monospace;font-size:12px}
+.stage-card strong{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:12px}
 .burrow-grid{display:grid;gap:10px}@media(min-width:720px){.burrow-grid{grid-template-columns:1fr 1fr}}
 .burrow-item{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--panel2);display:flex;gap:12px;align-items:flex-start}
 .egg{display:inline-flex;flex-direction:column;align-items:center;gap:2px;border:1px dashed var(--muted);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;padding:10px 12px;font-size:11px;opacity:.55}
@@ -119,7 +120,8 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
       <div class="companion-frame">
         <div class="companion-label">✦ Your companion ✦</div>
         <canvas id="hamster" width="24" height="24" aria-label="Pixel-art Living Squeek"></canvas>
-        <p class="tiny mobile-hide" style="text-align:center;margin-top:8px;color:var(--muted)">Pixel art drawn in code, with this Squeek's pattern and glyphs worked in. It is <em>not</em> the on-chain dot-grid image.</p>
+        <img id="realArt" alt="On-chain dot-grid image for this Squeek" style="display:none;width:100%;max-width:320px;aspect-ratio:1;object-fit:contain;margin:0 auto;border:2px solid #3a2f14;border-radius:10px;background:#080808">
+        <p class="tiny mobile-hide" style="text-align:center;margin-top:8px;color:var(--muted)" id="artNote">On-chain dot-grid image, shown when the token has one. The drawn art below it is only a fallback when no on-chain image loads.</p>
         <div style="text-align:center" class="row"><span id="stageBadge" class="badge settled">Stage — unknown</span><span id="custodyBadge" class="badge snap">Custody — unknown</span></div>
         <p class="tiny" style="text-align:center;margin-top:6px">A Squeek sitting in a wallet earns nothing, so it sleeps. A deposited (staked) one is awake.</p>
       </div>
@@ -599,6 +601,44 @@ function requireDeploy(){
   return false;
 }
 
+/* ============ Real on-chain dot-grid image ============
+   tokenURI(uint256) selector 0xc87b56dd. The result is ABI-encoded: a
+   32-byte offset, a 32-byte byte length, then the UTF-8 bytes of a
+   data:application/json;base64,... URI whose "image" field is the
+   on-chain SVG (renderer sqk.dotgrid-renderer.v1). The SVG is shown
+   ONLY through an <img> tag, never inlined into the DOM, so any script
+   inside the token image cannot run in this page. If tokenURI reverts
+   (e.g. an ID that is not minted on this contract) or the image fails
+   to load, the drawn art stays visible and the note says so. */
+var realArtSeq=0;
+function loadRealArt(tokenId){
+  var seq=++realArtSeq, img=$("realArt"), cv=$("hamster"), note=$("artNote");
+  if(!img||!cv) return;
+  img.style.display="none"; cv.style.display="block";
+  if(note) note.textContent="Loading the on-chain dot-grid image…";
+  var data="0xc87b56dd"+pad256(BigInt(tokenId));
+  ethCall(CONFIG.contracts.nft.address, data).then(function(j){
+    if(seq!==realArtSeq) return;
+    if(!j || !j.result || j.error) throw new Error("tokenURI unavailable");
+    var hex=j.result.replace(/^0x/,"");
+    if(hex.length<128) throw new Error("tokenURI too short");
+    var len=Number(BigInt("0x"+hex.slice(64,128)));
+    var bytesHex=hex.slice(128,128+len*2);
+    var bytes=new Uint8Array(bytesHex.length/2);
+    for(var i=0;i<bytes.length;i++) bytes[i]=parseInt(bytesHex.slice(i*2,i*2+2),16);
+    var uri=new TextDecoder().decode(bytes);
+    if(uri.indexOf("data:application/json;base64,")!==0) throw new Error("tokenURI is not base64 JSON");
+    var meta=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(uri.split(",")[1]),function(c){return c.charCodeAt(0);})));
+    if(!meta.image || meta.image.indexOf("data:image/svg+xml")!==0) throw new Error("no SVG image in metadata");
+    img.onload=function(){ if(seq!==realArtSeq) return; img.style.display="block"; cv.style.display="none"; if(note) note.textContent="On-chain dot-grid image for Squeek #"+tokenId+" — "+(meta.name||"")+". Rendered from the token's own metadata; the drawn art is kept only as a fallback."; };
+    img.onerror=function(){ if(seq!==realArtSeq) return; img.style.display="none"; cv.style.display="block"; if(note) note.textContent="No on-chain image loaded for Squeek #"+tokenId+" — drawn art shown instead."; };
+    img.src=meta.image;
+  }).catch(function(){
+    if(seq!==realArtSeq) return;
+    img.style.display="none"; cv.style.display="block";
+    if(note) note.textContent="No on-chain image for Squeek #"+tokenId+" on this contract — drawn art shown instead.";
+  });
+}
 /* ============ Pixel art — pattern + glyphs drawn in; sleeping when in wallet (fix 14) ============ */
 function seeded(n){ var x=Math.sin(n*127.1+311.7)*43758.5453; return x-Math.floor(x); }
 function drawHamsterTo(canvas, stage, sq, opts){
@@ -704,6 +744,7 @@ function render(){
   $("sqLastEvolved").textContent = le ? (le.type+" (events feed) · "+le.at) : "Nothing seen yet. No merge or deposit for this Squeek in the events feed.";
   if(burrowAccount && burrowAccount.rewards){ $("sqLifetime").textContent = sqkOrUnknown(burrowAccount.rewards.lifetimePaidBaseUnits)+" claimed lifetime (account "+short(burrowAccount.address)+") + "+sqkOrUnknown(burrowAccount.rewards.lifetimeCompoundedBaseUnits)+" compounded"; }
   drawHamsterTo($("hamster"), st===null?1:st, sq, { sleeping: sq.known && isSleeping(sq), unknown: !sq.known });
+  if(/^\d+$/.test(String(sq.id))) loadRealArt(sq.id);
   drawFuse();
   renderTimeline(); renderSqHistory(); runSim(true);
 }
@@ -1117,7 +1158,7 @@ $("makeShare").addEventListener("click", function(){
   var art=document.createElement("canvas"); art.width=24; art.height=24;
   drawHamsterTo(art, st===null?1:st, sq, { sleeping: sq.known&&isSleeping(sq), unknown:!sq.known });
   x.imageSmoothingEnabled=false; x.drawImage(art, 60, 90, 360, 360);
-  x.fillStyle="#39ff6a"; x.font="28px 'Press Start 2P', monospace"; x.fillText("SQUEEK #"+sq.id, 470, 130);
+  x.fillStyle="#39ff6a"; x.font="600 28px 'Barlow Condensed','Arial Narrow',sans-serif"; x.fillText("SQUEEK #"+sq.id, 470, 130);
   x.fillStyle="#e8f5e8"; x.font="24px 'IBM Plex Mono', monospace";
   x.fillText("Stage: "+(st===null?"unknown":st+" · "+STAGES[st].name), 470, 190);
   x.fillText("Level: "+(sq.known?sq.level:"unknown")+" · Power: "+(sq.known?fmt(sq.power):"unknown"), 470, 235);
