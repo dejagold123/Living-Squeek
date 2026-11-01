@@ -39,7 +39,9 @@ button:active{transform:translateY(1px)} button:focus-visible,input:focus-visibl
 button:disabled{opacity:.45;cursor:not-allowed}
 input,select{font-family:inherit;font-size:16px;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%;min-height:48px}
 .chipbtn{padding:9px 13px;min-height:44px;border-radius:999px} .chipbtn.active{background:var(--green);color:#041404;border-color:var(--green)}
-.keys-banner{border:2px solid var(--green);border-radius:12px;padding:12px 14px;margin:12px 0;background:rgba(57,255,106,.06);font-size:14px}
+.keys-banner{border:1px solid var(--green);border-radius:10px;padding:8px 12px;margin:8px 0;background:rgba(57,255,106,.06);font-size:13px}
+.keys-banner summary{cursor:pointer;list-style:none;font-weight:700}.keys-banner summary::-webkit-details-marker{display:none}.keys-banner summary::after{content:" \25BE";color:var(--muted)}.keys-banner[open] summary::after{content:" \25B4"}
+.keys-banner p{margin:6px 0 0;color:var(--muted)}
 .companion-frame{background:var(--companion-bg);border:3px solid var(--companion);border-radius:18px;padding:14px 12px 12px;box-shadow:0 0 0 4px rgba(233,201,121,.14)}
 .companion-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--companion);font-weight:700;text-align:center;margin-bottom:8px}
 canvas#hamster,canvas.mini-art{image-rendering:pixelated;background:#080808;border:2px solid #3a2f14;border-radius:10px}
@@ -82,7 +84,8 @@ footer{margin-top:28px;border-top:1px solid var(--line);padding-top:16px}
 .fuse-wrap{display:flex;align-items:center;justify-content:center;gap:0;min-height:110px;overflow:hidden}
 .fuse-wrap canvas{transition:transform 1.2s ease, opacity 1.2s ease}
 .fuse-wrap.go .fuse-a{transform:translateX(46px)} .fuse-wrap.go .fuse-b{transform:translateX(-46px);opacity:.25}
-.banner{border:1px solid var(--green);border-radius:12px;padding:12px 14px;margin:12px 0;background:rgba(57,255,106,.08);display:none}
+.banner{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:50;width:min(560px,calc(100% - 24px));border:1px solid var(--green);border-radius:12px;padding:10px 40px 10px 14px;background:var(--panel);box-shadow:0 6px 24px rgba(0,0,0,.5);font-size:13px;display:none}
+.banner button{position:absolute;top:4px;right:6px;padding:4px 9px;min-height:0;font-size:14px;line-height:1}
 .check li{margin-bottom:4px}
 canvas#wheelCanvas{width:110px;height:110px;image-rendering:pixelated}
 canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);border-radius:12px;display:none}
@@ -92,7 +95,7 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
 <body>
 <div class="wrap">
 
-  <div class="keys-banner" role="note"><strong>🔑 You never need a seed phrase, private key or password here, and this page can't sign anything.</strong> Owner actions are only <em>prepared</em>, unsigned, for your own wallet to review and sign. If something asks you for a key, it isn't this page.</div>
+  <details class="keys-banner"><summary>🔑 No keys needed. This page can't sign anything.</summary><p>Owner actions are only <em>prepared</em>, unsigned, for your own wallet to review and sign. If something asks you for a seed phrase, private key or password, it isn't this page.</p></details>
 
   <div class="banner" id="settleBanner" role="status"></div>
 
@@ -737,7 +740,7 @@ function eventMentions(e, idStr){
   return vals.indexOf(idStr)>-1;
 }
 function showBanner(text){
-  var b=$("settleBanner"); b.textContent="🔔 "+text; b.style.display="block";
+  var b=$("settleBanner"); b.innerHTML=""; var t=document.createElement("span"); t.textContent="🔔 "+text; var x=document.createElement("button"); x.type="button"; x.setAttribute("aria-label","Dismiss"); x.textContent="×"; x.onclick=function(){ b.style.display="none"; }; b.appendChild(t); b.appendChild(x); b.style.display="block"; clearTimeout(showBanner.t); showBanner.t=setTimeout(function(){ b.style.display="none"; },12000);
 }
 /* ============ Squeek loading — unknown defaults + stale guard (fix 7, 8) ============ */
 function hueFor(palette){ var p=(palette||"").toLowerCase(); if(p.indexOf("cyan")>-1) return "#2ae0ff"; if(p.indexOf("orange")>-1) return "#ff8a2a"; if(p.indexOf("rgb")>-1) return "#ff4d6d"; return "#8dff3a"; }
