@@ -1,24 +1,20 @@
 # Living Squeek
 
-A small companion app for Squeekchain holders. Your Squeek is a pixel creature that grows through five stages, and it only grows when the work behind it has settled on-chain. Live wheel readings are shown but never count.
+Your Squeek, but alive. It's a little pixel creature that grows as the work behind it settles on Squeekchain. Watching the live wheel is part of it, but live readings don't make your Squeek grow. Only settled work does.
 
-Live site: https://dejagold123.github.io/Living-Squeek/
+Try it: https://dejagold123.github.io/Living-Squeek/
 
-## What it does
+## What's in it
 
-- Look up any Squeek by token ID, or load every Squeek in a wallet (the "burrow").
-- Shows whether a Squeek is asleep in a wallet or awake in staking.
-- Prepares claim, merge and checkpoint calls as unsigned EIP-5792 bundles for your own wallet to sign.
-- Makes a share card for any Squeek, all in the browser.
+- Look up any Squeek by ID, or paste a wallet to see all of its Squeeks.
+- A Squeek in your wallet sleeps. A deposited one is awake.
+- Claim, merge and checkpoint calls come out as unsigned bundles that your own wallet signs.
+- A share card for your Squeek, made right in the browser.
 
-## Things worth knowing
+## Good to know
 
-- Sepolia testnet only. Test Squeeks and SQK have no monetary value.
-- Independent project, not an official Squeekchain product. Built directly on the public API (Lane A, no IMD job).
-- It never asks for a seed phrase or private key and never signs anything.
-- Contract addresses come from the published `sepolia.json`, never from the API. If a deployment check fails, owner actions stop.
-- If a live read fails, the page says "unknown" instead of showing zero.
+This is a Sepolia testnet project, so nothing here has real value. It's my own build on the public Squeekchain API, not an official Squeekchain product. It doesn't ask for keys and can't sign anything. If a live read fails, you'll see "unknown" rather than a zero.
 
-## Run it
+## Running it
 
-It's a single `index.html` with no build step. Open it in a browser, or serve the folder with any static host. On GitHub Pages: Settings, Pages, deploy from the `main` branch root.
+It's one `index.html`. Open it in a browser or host it anywhere static. I use GitHub Pages from the `main` branch.
