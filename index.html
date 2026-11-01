@@ -399,7 +399,7 @@ var lastEvolvedById = {}; /* tokenId -> {round, type, at} from real events only 
 var reqSeq = 0; /* stale-response guard (fix 8) */
 var deployOK = null; /* null=not run, true=pass, false=mismatch (fix 2) */
 var seenEggs = {}, solidEggs = {};
-var prevSettled = null, prevStage = null;
+var prevSettled = null, prevStage = null, prevStageId = null, liveReady = false; /* banners only fire after the first live read, so the page never announces something that happened before you opened it */
 var burrowAccount = null;
 
 /* ============ API fetch wrapper — schemaVersion, unavailable, 429/Retry-After (fix 11) ============ */
@@ -679,8 +679,8 @@ function render(){
     $("stageBar").style.width=Math.round(Math.min(lvlFrac,powFrac)*100)+"%";
     $("stageExplain").textContent="Stage "+st+" · "+STAGES[st].name+" comes from settled round "+fmt(settled)+", Level "+sq.level+" and base power "+fmt(sq.power)+" (economy table: "+ECON.source+"). Next up is Stage "+next+" · "+STAGES[next].name+", which needs Level ≥ "+needLvl+" and base power ≥ "+fmt(needPow)+". The bar follows whichever of the two is further behind. Live round "+SNAP.currentRound+" doesn't count.";
   }
-  if(prevStage!==null && st!==null && prevStage!==st && current.known){ showBanner("Squeek #"+sq.id+" moved from Stage "+prevStage+" to Stage "+st+" after round "+fmt(settled)+" settled."); }
-  if(st!==null) prevStage=st;
+  if(liveReady && prevStageId===String(sq.id) && prevStage!==null && st!==null && prevStage!==st && current.known){ showBanner("Squeek #"+sq.id+" moved from Stage "+prevStage+" to Stage "+st+" after round "+fmt(settled)+" settled."); }
+  if(st!==null){ prevStage=st; prevStageId=String(sq.id); }
   var track=$("stageTrack"); track.innerHTML="";
   STAGES.forEach(function(s){
     var d=document.createElement("div"); d.className="stage-cell"+(st!==null&&s.n<st?" done":st!==null&&s.n===st?" now":"");
@@ -892,7 +892,7 @@ function refreshStatus(){
       $("lagRounds").textContent=lagR+" round(s) unsettled · "+fmt(lagWork)+" work units unsettled";
       $("lagBar").style.width=(liveWork>0?Math.round(Number(a.cumulativeWork)/liveWork*100):100)+"%";
       var ns=$("netSource"); ns.textContent="Refreshed just now"; ns.className="badge snap";
-      msg.textContent="Live data loaded."; drawWheel(); render();
+      msg.textContent="Live data loaded."; drawWheel(); render(); liveReady=true;
     } else { msg.textContent="The API answered without a settled anchor, so the snapshot stays."; }
     return apiGet("/measurement/blocks", "game-block-projection.v1");
   }).then(function(j){
@@ -1138,7 +1138,6 @@ if($("refreshPower")) $("refreshPower").addEventListener("click", function(){ lo
 function updateOnline(){ var on=navigator.onLine; var b=$("onlineBadge"); b.textContent=on?"Connection: online":"Connection: offline. Showing the dated snapshot; live values are unknown"; b.className="badge "+(on?"snap":"bad"); }
 window.addEventListener("online", updateOnline); window.addEventListener("offline", updateOnline);
 updateOnline(); updateCountdown(); setInterval(updateCountdown, 1000);
-prevSettled=settled;
 render(); drawWheel(); requestAnimationFrame(tickWheel);
 renderPowerUnknown("Reading position() for the selected Squeek. Shows unknown until the read succeeds.");
 loadPowerReadout();
