@@ -88,6 +88,15 @@ footer{margin-top:28px;border-top:1px solid var(--line);padding-top:16px}
 .banner{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:50;width:min(560px,calc(100% - 24px));border:1px solid var(--green);border-radius:12px;padding:10px 40px 10px 14px;background:var(--panel);box-shadow:0 6px 24px rgba(0,0,0,.5);font-size:13px;display:none}
 .banner button{position:absolute;top:4px;right:6px;padding:4px 9px;min-height:0;font-size:14px;line-height:1}
 .check li{margin-bottom:4px}
+.round-strip{margin:12px 0 4px}.round-bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:6px}.round-bar i{display:block;height:100%;width:0;background:var(--green);transition:width 1s linear}
+.companion-frame{position:relative}
+.companion-frame.evolved{animation:evoGlow 1.6s ease 2}
+@keyframes evoGlow{50%{box-shadow:0 0 30px var(--green)}}
+.evolve-overlay{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px;text-align:center;border-radius:inherit;background:rgba(7,10,7,.9);color:#e8f5e8;animation:evoPop .5s ease}
+.evolve-overlay strong{font-family:"Press Start 2P",monospace;font-size:13px;color:#39ff6a;line-height:1.6}
+@keyframes evoPop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+.stage-log{margin:0;padding-left:18px}.stage-log li{margin-bottom:4px}
+@media (prefers-reduced-motion: reduce){.companion-frame.evolved,.evolve-overlay{animation:none}.round-bar i{transition:none}}
 canvas#wheelCanvas{width:110px;height:110px;image-rendering:pixelated}
 canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);border-radius:12px;display:none}
 @media (prefers-reduced-motion: reduce){ .fuse-wrap canvas{transition:none} }
@@ -130,6 +139,7 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
         <h3>Progress to the next stage</h3>
         <div class="bar" aria-hidden="true"><i id="stageBar" style="width:0%"></i></div>
         <p class="small" id="stageExplain" style="margin-top:8px">Loading…</p>
+        <div class="round-strip"><div class="small" id="heroRound">Next round closes in —</div><div class="round-bar" aria-hidden="true"><i id="roundBar"></i></div><p class="tiny" style="margin:6px 0 0">A closed round only counts once it settles. Your Squeek grows then, not before.</p></div>
         <div class="stage-track" id="stageTrack"></div>
         <p class="tiny mobile-hide">Backdrop, pose and shape change with each stage. Pattern and glyph marks belong to the token, so #1 (Diamond / Cross) and #100 (Heart / Crown) look different even though both are Acid Lime.</p>
       </div>
@@ -722,7 +732,8 @@ function render(){
     $("stageBar").style.width=Math.round(Math.min(lvlFrac,powFrac)*100)+"%";
     $("stageExplain").textContent="Stage "+st+" · "+STAGES[st].name+" comes from settled round "+fmt(settled)+", Level "+sq.level+" and base power "+fmt(sq.power)+" (economy table: "+ECON.source+"). Next up is Stage "+next+" · "+STAGES[next].name+", which needs Level ≥ "+needLvl+" and base power ≥ "+fmt(needPow)+". The bar follows whichever of the two is further behind. Live round "+SNAP.currentRound+" doesn't count.";
   }
-  if(liveReady && prevStageId===String(sq.id) && prevStage!==null && st!==null && prevStage!==st && current.known){ showBanner("Squeek #"+sq.id+" moved from Stage "+prevStage+" to Stage "+st+" after round "+fmt(settled)+" settled."); }
+  if(liveReady && prevStageId===String(sq.id) && prevStage!==null && st!==null && prevStage!==st && current.known){ showEvolution(sq.id, prevStage, st); }
+  if(liveReady && current.known && st!==null) recordStage(sq.id, st);
   if(st!==null){ prevStage=st; prevStageId=String(sq.id); }
   var track=$("stageTrack"); track.innerHTML="";
   STAGES.forEach(function(s){
@@ -768,17 +779,49 @@ function renderTimeline(){
 }
 function renderSqHistory(){
   var box=$("sqHistory"); if(!box) return;
+  var log=stageLogFor(current.id).slice().reverse(), logHtml="";
+  if(log.length){
+    logHtml="<h3 style='margin:0 0 6px'>Stages seen on this device</h3><ul class='stage-log'>";
+    log.forEach(function(r){ var nm=(STAGES[r.stage]&&STAGES[r.stage].name)||"?"; var when=new Date(r.at).toLocaleString([],{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}); logHtml+="<li><strong>Stage "+esc(r.stage)+" \u00B7 "+esc(nm)+"</strong> <span class='small'>"+(r.first?"first seen":"reached")+" at settled round "+esc(fmt(r.round))+" \u00B7 "+esc(when)+"</span></li>"; });
+    logHtml+="</ul><p class='tiny' style='margin:6px 0 12px'>Saved in this browser only. It records what you saw here, not an on-chain record.</p>";
+  }
   var evs=(window.__EVENTS||[]).filter(function(e){ return eventMentions(e, String(current.id)); });
-  if(!evs.length){ box.innerHTML="<p class='small'>No merge or deposit events for Squeek #"+esc(current.id)+" in the events feed yet. History only shows real events, so it stays empty until one appears.</p>"; return; }
+  if(!evs.length){ box.innerHTML=logHtml+"<p class='small'>No merge or deposit events for Squeek #"+esc(current.id)+" in the events feed yet. History only shows real events, so it stays empty until one appears.</p>"; return; }
   var html="<ul style='margin:0;padding-left:18px'>";
   evs.forEach(function(e){ html+="<li><strong>"+esc(e.type)+"</strong> <span class='small'>"+esc(e.occurredAt||"")+" · tx "+esc(short(e.source&&e.source.transactionHash||""))+"</span></li>"; });
-  box.innerHTML=html+"</ul>";
+  box.innerHTML=logHtml+"<h3 style='margin:0 0 6px'>On-chain events</h3>"+html+"</ul>";
 }
 function eventMentions(e, idStr){
   if(!e || (e.type!=="nft.merged" && e.type!=="nft.deposited")) return false;
   var p=e.payload||{}; var vals=[];
   Object.keys(p).forEach(function(k){ var v=p[k]; if(Array.isArray(v)) v.forEach(function(x){ vals.push(String(x)); }); else if(v!==null && typeof v!=="object") vals.push(String(v)); });
   return vals.indexOf(idStr)>-1;
+}
+/* ============ Evolution moment + stage log (kept in this browser only) ============ */
+var STAGE_LOG_KEY="livingSqueekStages.v1";
+function loadStageLog(){ try{ var o=JSON.parse(localStorage.getItem(STAGE_LOG_KEY)||"{}"); return (o && typeof o==="object")?o:{}; }catch(e){ return {}; } }
+function recordStage(id, st){
+  try{
+    var all=loadStageLog(), k=String(id), arr=Array.isArray(all[k])?all[k]:[];
+    if(arr.length && arr[arr.length-1].stage===st) return;
+    arr.push({ stage:st, round:settled, at:Date.now(), first:arr.length===0 });
+    all[k]=arr.slice(-20);
+    var keys=Object.keys(all); if(keys.length>50) delete all[keys[0]];
+    localStorage.setItem(STAGE_LOG_KEY, JSON.stringify(all));
+  }catch(e){}
+}
+function stageLogFor(id){ var a=loadStageLog()[String(id)]; return Array.isArray(a)?a:[]; }
+function showEvolution(id, from, to){
+  var frame=document.querySelector(".companion-frame"); if(!frame) return;
+  var old=frame.querySelector(".evolve-overlay"); if(old) old.remove();
+  var ov=document.createElement("div"); ov.className="evolve-overlay"; ov.setAttribute("role","status");
+  var h=document.createElement("strong"); h.textContent="\u2726 EVOLVED \u2726";
+  var p=document.createElement("div"); p.textContent="Squeek #"+id+": Stage "+from+" \u2192 Stage "+to+" \u00B7 "+STAGES[to].name;
+  var q=document.createElement("div"); q.className="small"; q.style.color="#9db89d"; q.textContent="Round "+fmt(settled)+" settled.";
+  var b=document.createElement("button"); b.type="button"; b.className="primary"; b.textContent="Nice";
+  function close(){ ov.remove(); frame.classList.remove("evolved"); }
+  b.onclick=close; ov.appendChild(h); ov.appendChild(p); ov.appendChild(q); ov.appendChild(b);
+  frame.appendChild(ov); frame.classList.add("evolved"); setTimeout(close, 10000);
 }
 function showBanner(text){
   var b=$("settleBanner"); b.innerHTML=""; var t=document.createElement("span"); t.textContent="🔔 "+text; var x=document.createElement("button"); x.type="button"; x.setAttribute("aria-label","Dismiss"); x.textContent="×"; x.onclick=function(){ b.style.display="none"; }; b.appendChild(t); b.appendChild(x); b.style.display="block"; clearTimeout(showBanner.t); showBanner.t=setTimeout(function(){ b.style.display="none"; },12000);
@@ -911,6 +954,8 @@ function updateCountdown(){
   $("roundCountdown").textContent=Math.floor(remain/60)+"m "+String(remain%60).padStart(2,"0")+"s";
   var lr=$("liveRound"); if(lr) lr.textContent="Round "+fmt(curRound)+" — open";
   SNAP.currentRound=curRound;
+  var hr=$("heroRound"); if(hr) hr.textContent="Round "+fmt(curRound)+" closes in "+Math.floor(remain/60)+"m "+String(remain%60).padStart(2,"0")+"s";
+  var rb=$("roundBar"); if(rb) rb.style.width=Math.round(into/SNAP.roundSeconds*100)+"%";
 }
 function refreshStatus(){
   var msg=$("refreshMsg"); msg.textContent="Checking…";
