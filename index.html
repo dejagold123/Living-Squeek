@@ -92,7 +92,7 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
 <body>
 <div class="wrap">
 
-  <div class="keys-banner" role="note"><strong>🔑 This page never asks for a seed phrase, private key or password — and it never signs anything.</strong> Every owner action is only <em>prepared</em> here, unsigned, for your own wallet to review and sign. If anything ever asks you for a key, it is not this page.</div>
+  <div class="keys-banner" role="note"><strong>🔑 You never need a seed phrase, private key or password here, and this page can't sign anything.</strong> Owner actions are only <em>prepared</em>, unsigned, for your own wallet to review and sign. If something asks you for a key, it isn't this page.</div>
 
   <div class="banner" id="settleBanner" role="status"></div>
 
@@ -104,8 +104,8 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
       <span class="badge snap" id="onlineBadge">Connection: checking…</span>
     </div>
     <h1>LIVING<br>SQUEEK</h1>
-    <p style="font-size:16px;max-width:640px">Your Squeek is a living companion — not a stat card. It grows through five stages, and it <strong>only evolves on work Squeekchain has actually settled on-chain</strong>. Live wheel readings are shown, but they never count.</p>
-    <p class="small mobile-hide">No timers, no refreshing tricks, no paying to skip. Sepolia testnet only — testnet Squeeks have no monetary value. Living Squeek is an independent, unofficial builder project prepared for IMD swarm review, not an official Squeekchain product. Its code is original, its stages are derived only from settled work, and every owner action is prepared, never signed, by this page.</p>
+    <p style="font-size:16px;max-width:640px">Your Squeek isn't a stat card. It's a small creature that grows through five stages, and it <strong>only grows on work Squeekchain has settled on-chain</strong>. You can watch the live wheel too, but live readings never count.</p>
+    <p class="small mobile-hide">This runs on the Sepolia testnet, so test Squeeks have no monetary value. Living Squeek is an independent project, not an official Squeekchain product. It's prepared for IMD swarm review, with original code, settled-only evolution, and owner actions prepared, never signed, by this page.</p>
     <div class="row" style="margin-top:12px">
       <a href="#viewer"><button class="primary">Choose a Squeek ↓</button></a>
       <a href="#how"><button>How evolution works</button></a>
@@ -116,17 +116,17 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
       <div class="companion-frame">
         <div class="companion-label">✦ Your companion ✦</div>
         <canvas id="hamster" width="24" height="24" aria-label="Pixel-art Living Squeek"></canvas>
-        <p class="tiny mobile-hide" style="text-align:center;margin-top:8px;color:var(--muted)">Original pixel art drawn in code — pattern &amp; glyphs from this Squeek are drawn into it. It is <em>not</em> the on-chain dot-grid image.</p>
+        <p class="tiny mobile-hide" style="text-align:center;margin-top:8px;color:var(--muted)">Pixel art drawn in code, with this Squeek's pattern and glyphs worked in. It is <em>not</em> the on-chain dot-grid image.</p>
         <div style="text-align:center" class="row"><span id="stageBadge" class="badge settled">Stage — unknown</span><span id="custodyBadge" class="badge snap">Custody — unknown</span></div>
-        <p class="tiny" style="text-align:center;margin-top:6px">A Squeek sitting in a wallet earns nothing, so it is drawn curled up asleep. A deposited (staked) Squeek is drawn awake.</p>
+        <p class="tiny" style="text-align:center;margin-top:6px">A Squeek sitting in a wallet earns nothing, so it sleeps. A deposited (staked) one is awake.</p>
       </div>
       <div class="card" style="margin:0">
         <h2 id="sqName" style="font-size:16px">SQUEEK #1</h2>
-        <h3>Progress to next stage — real thresholds</h3>
+        <h3>Progress to the next stage</h3>
         <div class="bar" aria-hidden="true"><i id="stageBar" style="width:0%"></i></div>
         <p class="small" id="stageExplain" style="margin-top:8px">Loading…</p>
         <div class="stage-track" id="stageTrack"></div>
-        <p class="tiny mobile-hide">Backdrop, pose and silhouette change by stage. Pattern and glyph marks are specific to this token — #1 carries a Diamond / Cross, #100 a Heart / Crown, so same-palette Squeeks no longer look identical.</p>
+        <p class="tiny mobile-hide">Backdrop, pose and shape change with each stage. Pattern and glyph marks belong to the token, so #1 (Diamond / Cross) and #100 (Heart / Crown) look different even though both are Acid Lime.</p>
       </div>
     </div>
   </header>
@@ -134,7 +134,7 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
   <!-- VIEWER -->
   <section class="card" id="viewer">
     <h2>1 · FIND YOUR SQUEEK</h2>
-    <p class="small">No wallet needed to look. Viewing is always public. A token that has not loaded shows <strong>unknown</strong> — never a default Level 1 / Power 1,000.</p>
+    <p class="small">No wallet needed to look. A token that hasn't loaded shows <strong>unknown</strong>, not a made-up Level 1.</p>
     <div class="row" role="group" aria-label="Public test Squeeks">
       <button class="chipbtn squeek-chip active" data-id="1">#1 · Acid Lime</button>
       <button class="chipbtn squeek-chip" data-id="2">#2</button>
@@ -152,11 +152,11 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
       <dt>Custody</dt><dd id="sqCustody">Unknown</dd>
       <dt>Level</dt><dd id="sqLevel">Unknown</dd>
       <dt>Base power</dt><dd id="sqPower">Unknown</dd>
-      <dt>Active power</dt><dd id="sqActivePower">Unknown — <a href="#ownerPowerReadout">see Power readout in Owner Actions ↓</a></dd>
-      <dt>Power pending</dt><dd id="sqPending">Unknown — <a href="#ownerPowerReadout">see Power readout in Owner Actions ↓</a></dd>
+      <dt>Active power</dt><dd id="sqActivePower">Unknown. <a href="#ownerPowerReadout">See the power readout below ↓</a></dd>
+      <dt>Power pending</dt><dd id="sqPending">Unknown. <a href="#ownerPowerReadout">See the power readout below ↓</a></dd>
       <dt>Merge state</dt><dd id="sqMerge">Unknown</dd>
-      <dt>Last evolved</dt><dd id="sqLastEvolved">No merge/deposit event observed yet</dd>
-      <dt>Lifetime SQK claimed</dt><dd id="sqLifetime">Unknown — load the owner account in the burrow</dd>
+      <dt>Last evolved</dt><dd id="sqLastEvolved">Nothing seen yet</dd>
+      <dt>Lifetime SQK claimed</dt><dd id="sqLifetime">Unknown. Load the owner's wallet in the burrow.</dd>
       <dt>Palette</dt><dd id="sqPalette">—</dd>
       <dt>Pattern</dt><dd id="sqPattern">—</dd>
       <dt>Glyphs</dt><dd id="sqGlyphs">—</dd>
@@ -167,7 +167,7 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
   <!-- BURROW -->
   <section class="card" id="burrow">
     <h2>2 · THE BURROW — ALL OF A WALLET'S SQUEEKS</h2>
-    <p class="small">Loads every Squeek for an address from <code>/v1/accounts/{address}</code>, following the API's pagination cursor. Wallet-held Squeeks sleep and earn nothing; deposited Squeeks are awake. Claimable SQK for the account is shown as its <strong>snack pouch</strong>.</p>
+    <p class="small">Paste a wallet address to see all its Squeeks, pulled from <code>/v1/accounts/{address}</code> page by page. Squeeks in the wallet sleep and earn nothing; deposited ones are awake. SQK waiting to be claimed shows up as the <strong>snack pouch</strong>.</p>
     <label class="tiny" for="burrowInput">WALLET ADDRESS (0x…)</label>
     <input id="burrowInput" placeholder="0x…" autocomplete="off" spellcheck="false">
     <div class="row" style="margin-top:10px"><button id="loadBurrow" class="primary">Load burrow</button><span id="burrowMsg" class="small" role="status"></span></div>
@@ -190,7 +190,7 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
         <div class="row"><canvas id="wheelCanvas" width="24" height="24" aria-label="Live wheel animation"></canvas>
         <div>
           <p class="small" style="margin:0">Wheel state (<code>coreStatus</code>): <strong id="wheelState">IDLE</strong></p>
-          <p class="tiny">Verified: <code>coreStatus</code> is reported in the same measurement block as the wheel module (<code>wheel.counter</code>, module state “ready”) and its RPM / speed readings — so it is treated here as the wheel's state, not a generic core state.</p>
+          <p class="tiny"><code>coreStatus</code> arrives in the same measurement block as the wheel module (<code>wheel.counter</code>, state "ready") and the RPM and speed readings, so it's treated as the wheel's state.</p>
           <p class="small" style="margin:0">RPM <strong id="wheelRpm">0</strong> · Speed <strong id="wheelSpeed">0 mm/s</strong></p>
           <p class="small" style="margin:0">Feed: <strong id="feedState">Unknown</strong></p>
         </div></div>
@@ -199,29 +199,29 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
         <h3>Settlement lag</h3>
         <p class="small">Live work <strong id="lagLive">58,518</strong> vs settled work <strong id="lagSettled">58,518</strong> — lag <strong id="lagRounds">unknown</strong>.</p>
         <div class="bar"><i id="lagBar" style="width:100%"></i></div>
-        <p class="tiny">The gap is work/rounds the wheel has produced that settlement has not certified yet. It is shown, never counted toward evolution.</p>
+        <p class="tiny">The gap is work the wheel has done that hasn't settled yet. It's shown for context and never counts toward growth.</p>
         <h3 style="margin-top:12px">Provisional blocks — ghost eggs</h3>
-        <div id="ghostEggs" class="row"><span class="small">No provisional blocks reported right now — that is <em>unknown / none reported</em>, not zero progress.</span></div>
-        <p class="tiny">Ghost eggs come from <code>/v1/measurement/blocks</code> (projected, unsettled). An egg solidifies once when its height reaches the settled frontier, and is not revealed twice.</p>
+        <div id="ghostEggs" class="row"><span class="small">No provisional blocks reported right now. That means none reported, not that nothing is happening.</span></div>
+        <p class="tiny">Ghost eggs come from <code>/v1/measurement/blocks</code> and are projections, not settled work. An egg turns solid once, when settlement reaches its height.</p>
       </div>
     </div>
-    <p class="tiny" style="margin-top:10px">Settlement tx (frontier 721) <span style="word-break:break-all">0xe45a77d8…da47d346f</span>. A settlement to round 722 was submitted at snapshot time but not yet confirmed, so the frontier stays 721. Sources: <a href="https://api.squeekchain.com/v1/status" target="_blank" rel="noopener">/v1/status</a>, <a href="https://api.squeekchain.com/v1/measurement/blocks" target="_blank" rel="noopener">/v1/measurement/blocks</a>. If the API is unreachable, the dated snapshot is kept. “Unavailable” = <em>unknown</em>, never zero.</p>
+    <p class="tiny" style="margin-top:10px">Last settlement tx (frontier 721): <span style="word-break:break-all">0xe45a77d8…da47d346f</span>. A settlement to round 722 had been submitted when this snapshot was taken but wasn't confirmed yet, so the frontier stayed at 721. Sources: <a href="https://api.squeekchain.com/v1/status" target="_blank" rel="noopener">/v1/status</a>, <a href="https://api.squeekchain.com/v1/measurement/blocks" target="_blank" rel="noopener">/v1/measurement/blocks</a>. If the API can't be reached, the dated snapshot stays on screen. "Unavailable" means unknown, not zero.</p>
     <button id="refreshNet">↻ Refresh network data</button> <span id="refreshMsg" class="small" role="status"></span>
   </details>
 
   <!-- EVOLUTION RULES -->
   <section class="card" id="how">
     <h2>3 · HOW EVOLUTION WORKS</h2>
-    <p>Stage is <strong>derived</strong> from two real things: the Squeek's <strong>on-chain level</strong> (with the base-power table read from <code>/v1/economy/state</code>, not hardcoded) and <strong>completed, settled Squeek blocks</strong>. Live wheel activity never advances a stage.</p>
-    <div id="econTables"><p class="small">Economy tables: showing the 31 Oct 2026 snapshot until the live read lands. Snapshot — maximum level 10; base power by level: L1 1,000 · L2 2,200 · L3 4,840 · L4 10,648 · L5 23,426 · L6 51,536 · L7 113,380 · L8 249,436 · L9 548,759 · L10 1,207,269. Merge cooldown by level (Squeek blocks): L1 0 · L2 3,000 · L3 7,000 · L4 14,000 · L5 21,000 · L6 28,000 · L7 35,000 · L8 42,000 · L9 49,000 · L10 0.</p></div>
+    <p>A Squeek's stage is <strong>worked out</strong> from its <strong>on-chain level</strong> (checked against the base-power table from <code>/v1/economy/state</code>) and the <strong>settled Squeek blocks</strong>. Live wheel activity never moves a stage.</p>
+    <div id="econTables"><p class="small">Economy tables: showing the 31 Oct 2026 snapshot until live data loads. Maximum level 10. Base power by level: L1 1,000 · L2 2,200 · L3 4,840 · L4 10,648 · L5 23,426 · L6 51,536 · L7 113,380 · L8 249,436 · L9 548,759 · L10 1,207,269. Merge cooldown by level (Squeek blocks): L1 0 · L2 3,000 · L3 7,000 · L4 14,000 · L5 21,000 · L6 28,000 · L7 35,000 · L8 42,000 · L9 49,000 · L10 0.</p></div>
     <div class="evolution-table-wrap">
     <table>
-      <tr><th>Stage</th><th>Name</th><th>Needs (all of it)</th><th>What changes</th></tr>
-      <tr><td><strong>0</strong></td><td>Newborn</td><td>Starting point — no live position / level yet</td><td>Curled, small, plain backdrop</td></tr>
-      <tr><td><strong>1</strong></td><td>Awake</td><td>Level ≥ 1 · base power for L1 from the economy table · settled frontier ≥ 1</td><td>Upright, eyes open, soft aura</td></tr>
-      <tr><td><strong>2</strong></td><td>Rolling</td><td>Level ≥ 3 · base power for L3 from the economy table</td><td>Leaning pose, pixel wheel ring</td></tr>
-      <tr><td><strong>3</strong></td><td>Strong</td><td>Level ≥ 6 · base power for L6 from the economy table</td><td>Broader silhouette, scarf</td></tr>
-      <tr><td><strong>4</strong></td><td>Legendary</td><td>Level 10 (max) · base power for L10 from the economy table</td><td>Crown, star backdrop, full aura</td></tr>
+      <tr><th>Stage</th><th>Name</th><th>Needs (all of these)</th><th>What changes</th></tr>
+      <tr><td><strong>0</strong></td><td>Newborn</td><td>Starting point: no live position or level yet</td><td>Curled, small, plain backdrop</td></tr>
+      <tr><td><strong>1</strong></td><td>Awake</td><td>Level ≥ 1 · L1 base power (economy table) · settled round ≥ 1</td><td>Upright, eyes open, soft aura</td></tr>
+      <tr><td><strong>2</strong></td><td>Rolling</td><td>Level ≥ 3 · L3 base power (economy table)</td><td>Leaning pose, pixel wheel ring</td></tr>
+      <tr><td><strong>3</strong></td><td>Strong</td><td>Level ≥ 6 · L6 base power (economy table)</td><td>Broader silhouette, scarf</td></tr>
+      <tr><td><strong>4</strong></td><td>Legendary</td><td>Level 10 (max) · L10 base power (economy table)</td><td>Crown, star backdrop, full aura</td></tr>
     </table>
     </div>
     <div class="stage-cards" aria-label="Evolution stages stacked">
@@ -231,22 +231,22 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
       <div class="stage-card"><strong>3 · STRONG</strong><p class="small">Level ≥ 6. Broader silhouette, scarf.</p></div>
       <div class="stage-card"><strong>4 · LEGENDARY</strong><p class="small">Level 10. Crown, star backdrop, full aura.</p></div>
     </div>
-    <div class="notice" style="margin-top:12px"><strong>Honest note on the test Squeeks:</strong> all five public IDs (1, 2, 3, 50, 100) are currently <strong>Level 1</strong> — so all five correctly derive <strong>Stage 1 · Awake</strong>. Stages 2–4 are locked, not hidden. Their per-Squeek <em>last-evolved round</em> is tracked from real merge/deposit events; none has been observed for them yet, so it reads “none observed” rather than an invented round.</div>
-    <h3 style="margin-top:18px">Derived stage view — computed, not recorded history</h3>
-    <p class="tiny">Everything below is <strong>derived</strong> in this page from settled data. It is not a recorded on-chain history. The separate “Evolution history” list underneath is built only from real events.</p>
+    <div class="notice" style="margin-top:12px"><strong>About the test Squeeks:</strong> all five public IDs (1, 2, 3, 50, 100) are Level 1 right now, so all five sit at <strong>Stage 1 · Awake</strong>. Stages 2–4 are locked, not hidden. "Last evolved" comes from real merge and deposit events. None has shown up for these yet, so it says so instead of inventing a round.</div>
+    <h3 style="margin-top:18px">Stage breakdown (calculated here, not on-chain history)</h3>
+    <p class="tiny">Everything in this list is calculated in the page from settled data. It isn't recorded history. The "Evolution history" list below it uses real events only.</p>
     <ol class="timeline" id="timeline"></ol>
-    <h3 style="margin-top:18px">Evolution history — from real events only</h3>
-    <div id="sqHistory"><p class="small">No merge or deposit event for this Squeek found in the events feed yet.</p></div>
-    <h3 style="margin-top:18px">Recent evolutions — everyone</h3>
+    <h3 style="margin-top:18px">Evolution history (real events only)</h3>
+    <div id="sqHistory"><p class="small">No merge or deposit events for this Squeek yet.</p></div>
+    <h3 style="margin-top:18px">Recent evolutions (all Squeeks)</h3>
     <div id="recentEvos"><p class="small">Loading the events feed…</p></div>
-    <h3 style="margin-top:18px">One-time badges — from the events feed</h3>
+    <h3 style="margin-top:18px">Badges (from the events feed)</h3>
     <div id="eventBadges"><p class="small">Speed records, distance milestones and streaks appear here when the feed reports them.</p></div>
   </section>
 
   <!-- SIMULATOR -->
   <section class="card">
     <div class="row" style="justify-content:space-between"><h2 style="margin:0">4 · PREVIEW A FUTURE STAGE</h2><span class="badge sim">Simulated — never counted</span></div>
-    <p class="small" style="margin-top:10px">This simulator has its <strong>own</strong> preview. It never touches the companion in the hero.</p>
+    <p class="small" style="margin-top:10px">This preview is separate from your real Squeek. It never changes the companion at the top.</p>
     <div class="grid" style="grid-template-columns:1fr;gap:14px">
       <div>
         <label class="tiny" for="simLevel">SIMULATED LEVEL: <strong id="simLevelVal">1</strong></label>
@@ -266,23 +266,23 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
   <!-- OWNER ACTIONS -->
   <section class="card" id="owner">
     <h2>5 · OWNER ACTIONS — PREPARE ONLY, NEVER SIGN</h2>
-    <p class="small">All contract addresses come from the <strong>published deployment record</strong> (<a href="https://docs.squeekchain.com/assets/deployments/sepolia.json" target="_blank" rel="noopener">sepolia.json</a>) held in one config object below — <strong>never from the API</strong>. The API's own installation reports different contract identities, so API identities are used for API data only and are never trusted for contracts. Before anything is prepared, the Quickstart deployment checks run against the published record; <strong>any mismatch stops all owner actions</strong>.</p>
-    <div id="deployChecks"><p class="small">Deployment checks have not run yet.</p></div>
+    <p class="small">Contract addresses come from the <strong>published deployment record</strong> (<a href="https://docs.squeekchain.com/assets/deployments/sepolia.json" target="_blank" rel="noopener">sepolia.json</a>), kept in one config object in this page, and <strong>never from the API</strong>. The API also reports contract identities, but they're only used to display data, never to build a call. Before anything is prepared, the Quickstart deployment checks run against the published record, and <strong>a mismatch stops every owner action</strong>.</p>
+    <div id="deployChecks"><p class="small">Deployment checks haven't run yet.</p></div>
     <div class="row" style="margin-top:8px"><button id="runChecks" class="primary">Run deployment checks</button><span id="checksMsg" class="small" role="status"></span></div>
 
     <div id="ownerPowerReadout" style="margin-top:20px;border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--panel2)">
       <h3 style="margin-top:0">Power readout — Owner Actions</h3>
-      <p class="small">For the Squeek currently selected in the viewer: <strong id="ownerPowerFor">Squeek #1</strong>. This readout and the “Active power” / “Power pending” rows in the viewer are fed from the <em>same</em> on-chain <code>position()</code> read on SqueekMining (address from sepolia.json). <strong>Active power</strong> is the weight already counting. <strong>Power pending</strong> is the weight held under <code>pendingRound</code> until the next checkpoint processes it. If that read is unavailable for a token, both this readout and the viewer show <strong>unknown</strong> — never zero and never a default.</p>
+      <p class="small">For the Squeek selected above: <strong id="ownerPowerFor">Squeek #1</strong>. These numbers and the "Active power" and "Power pending" rows in the viewer come from the same on-chain <code>position()</code> read on SqueekMining (address from sepolia.json). <strong>Active power</strong> is the weight already counting. <strong>Power pending</strong> is weight held under <code>pendingRound</code> until the next checkpoint. If the read fails, both places show <strong>unknown</strong>, never zero.</p>
       <dl class="kv">
         <dt>Active power</dt><dd id="ownerActivePower">Unknown</dd>
         <dt>Power pending</dt><dd id="ownerPendingPower">Unknown</dd>
         <dt>Pending round</dt><dd id="ownerPendingRound">Unknown</dd>
       </dl>
-      <div class="row" style="margin-top:10px"><button id="refreshPower" type="button">Refresh power readout</button><span id="ownerPowerMsg" class="small" role="status">Not loaded yet — shows unknown until the position read succeeds.</span></div>
+      <div class="row" style="margin-top:10px"><button id="refreshPower" type="button">Refresh power readout</button><span id="ownerPowerMsg" class="small" role="status">Not loaded yet. Shows unknown until the read succeeds.</span></div>
     </div>
 
     <h3 style="margin-top:20px">Ownership verified</h3>
-    <p class="small">Until a real claim or merge bundle is prepared below, this card is an ownership verification only — it is not itself an action. Ownership is re-read live (<code>ownerOf</code> on the published SqueekNFT contract) immediately before anything is prepared.</p>
+    <p class="small">This only checks ownership. It isn't an action. Ownership is read live (<code>ownerOf</code> on the published SqueekNFT contract) right before anything is prepared.</p>
     <label class="tiny" for="walletInput">YOUR WALLET ADDRESS (0x…)</label>
     <input id="walletInput" placeholder="0x…" autocomplete="off" spellcheck="false">
     <div class="row" style="margin-top:10px"><button id="checkOwner" class="primary">Verify ownership of current Squeek</button><span id="ownerMsg" class="small" role="status"></span></div>
@@ -291,18 +291,18 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
         <strong>✓ Ownership verified.</strong> <span id="prepOkText"></span>
         <pre id="prepTx"></pre>
       </div>
-      <div class="notice" id="prepNo" style="display:none"><strong>✕ Not the owner of this Squeek on the published deployment.</strong> You can keep viewing it — viewing is public — but owner actions stay locked.</div>
+      <div class="notice" id="prepNo" style="display:none"><strong>✕ That address doesn't own this Squeek on the published deployment.</strong> You can still view it, but owner actions stay locked.</div>
     </div>
 
     <h3 style="margin-top:20px">Claim bundle — snack pouch to SQK</h3>
-    <p class="small">Enter token IDs (comma-separated). They are sorted, deduplicated and split into batches of at most 32, exactly as the owner-actions guide requires. Each ID's <code>ownerOf</code> is re-read live first; the payout is simulated with <code>claimable(0, ids)</code> and a simulated <code>claim</code> call before the unsigned EIP-5792 bundle is shown. On any failure the decoded error is reported — the page <strong>never retries with different IDs</strong>.</p>
+    <p class="small">Enter token IDs separated by commas. They're sorted, de-duplicated and split into batches of up to 32, as the owner-actions guide requires. Each ID's <code>ownerOf</code> is read live first, then the payout is simulated with <code>claimable(0, ids)</code> and a test <code>claim</code> call before the unsigned EIP-5792 bundle appears. If anything fails you get the decoded error, and the page <strong>won't retry with different IDs</strong>.</p>
     <label class="tiny" for="claimIds">TOKEN IDS FOR CLAIM</label>
     <input id="claimIds" placeholder="e.g. 1, 2, 3" autocomplete="off">
     <div class="row" style="margin-top:10px"><button id="prepClaim">Prepare claim bundle</button><span id="claimMsg" class="small" role="status"></span></div>
     <div id="claimOut" style="margin-top:10px"></div>
 
-    <h3 style="margin-top:20px">Merge ceremony</h3>
-    <p class="small">Pick a survivor and a donor. Checks: both owned (re-read live), same level, neither at maximum level, no pending power (<code>pendingRound</code>), and both merge cooldowns reached — shown as bars in completed Squeek blocks (<code>nextMergeHeight</code> − current settled height). The merge is simulated before any bundle is shown.</p>
+    <h3 style="margin-top:20px">Merge</h3>
+    <p class="small">Pick a survivor and a donor. Checks: you own both (read live), same level, neither at max level, no pending power (<code>pendingRound</code>), and both cooldowns reached. Cooldowns show as bars in completed Squeek blocks (<code>nextMergeHeight</code> minus the current settled height). The merge is simulated before any bundle appears.</p>
     <div class="fuse-wrap" id="fuseWrap" aria-hidden="true">
       <canvas class="mini-art fuse-a" id="fuseA" width="24" height="24"></canvas>
       <canvas class="mini-art fuse-b" id="fuseB" width="24" height="24"></canvas>
@@ -316,7 +316,7 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
     <div id="mergeOut" style="margin-top:10px"></div>
 
     <h3 style="margin-top:20px">Checkpoint — anyone can run one</h3>
-    <p class="small">Checkpoints process settled rounds for every Squeek and need no ownership. This reads <code>checkpointStatus()</code> live, simulates <code>checkpoint()</code>, and shows the estimated gas before preparing an unsigned bundle. The caller pays gas and receives nothing for it.</p>
+    <p class="small">A checkpoint turns settled rounds into rewards for every Squeek, and anyone can run one. This reads <code>checkpointStatus()</code> live, simulates <code>checkpoint()</code> and shows estimated gas before preparing an unsigned bundle. The caller pays the gas and gets nothing back.</p>
     <div class="row"><button id="prepCheckpoint">Read status &amp; simulate checkpoint</button><span id="ckptMsg" class="small" role="status"></span></div>
     <div id="ckptOut" style="margin-top:10px"></div>
   </section>
@@ -324,15 +324,15 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
   <!-- SHARE -->
   <section class="card">
     <h2>6 · SHARE CARD</h2>
-    <p class="small">A per-token card built from this Squeek's own glyph art — its most distinctive feature — plus its derived stage, level, power and the settled round behind it. Generated entirely in your browser.</p>
+    <p class="small">A card for this Squeek with its own glyph art, stage, level, power and the settled round behind it. Made entirely in your browser.</p>
     <div class="row"><button id="makeShare" class="primary">Make share card for current Squeek</button><span id="shareMsg" class="small"></span></div>
     <div style="margin-top:12px"><canvas id="shareCanvas" width="960" height="540"></canvas></div>
     <div class="row" style="margin-top:10px"><a id="shareDownload" href="#" download="living-squeek.png" style="display:none"><button>Download card (PNG)</button></a><button id="copyShare" style="display:none">Copy card summary</button></div>
   </section>
 
   <footer>
-    <p class="small">Not a tracker — the Squeek itself changes on settled work, not just the chart around it.</p>
-    <p class="small"><strong>Living Squeek</strong> is an independent, unofficial builder project for Squeekchain on Ethereum Sepolia testnet, prepared for IMD swarm review. It is not an official Squeekchain product, and no swarm job ID is claimed on this page — the IMD job link is added only once a swarm job is opened and verified. Source: <a href="https://github.com/dejagold123/Living-Squeek" target="_blank" rel="noopener">github.com/dejagold123/Living-Squeek</a>. Contracts: published <a href="https://docs.squeekchain.com/assets/deployments/sepolia.json" target="_blank" rel="noopener">sepolia.json</a> (release squeeks-sepolia-core3-mining6-001) — SqueekCore proxy 0x74665d…e119f (impl v3), SqueekMining proxy 0x3beE58…b27EC4 (impl v6), SqueekToken 0x6872bf…a4cc76, SqueekNFT 0x0eAF3E…7905c6. Data: /v1/status, /v1/squeeks/{id}, /v1/accounts/{address}, /v1/economy/state, /v1/events, /v1/measurement/blocks — snapshot 31 Oct 2026, 15:16 WAT. Testnet Squeeks have no monetary value. Where a live read is unavailable, this page says “unknown” and keeps the dated snapshot — it never substitutes zero. Settled, live-unsettled, and simulated states are labelled separately throughout; nothing here is a tracker, a mint, or a betting game.</p>
+    <p class="small">This isn't a tracker. The Squeek itself changes when work settles.</p>
+    <p class="small"><strong>Living Squeek</strong> is an independent project for Squeekchain on the Ethereum Sepolia testnet. It's prepared for IMD swarm review and isn't an official Squeekchain product. No swarm job ID is claimed on this page — that link is added only once a swarm job is opened and verified. Source: github.com/dejagold123/Living-Squeek. Contracts: published <a href="https://docs.squeekchain.com/assets/deployments/sepolia.json" target="_blank" rel="noopener">sepolia.json</a> (release stream-game-sepolia-test-20261026-01) — SqueekCore proxy 0x74665d…e119f (impl v3), SqueekMining proxy 0x3beE58…b27EC4 (impl v9), SqueekToken 0x6872bf…a4cc76, SqueekNFT 0x0eAF3E…7905c6. Data: /v1/status, /v1/squeeks/{id}, /v1/accounts/{address}, /v1/economy/state, /v1/events, /v1/measurement/blocks — snapshot 31 Oct 2026, 15:16 WAT. Testnet Squeeks have no monetary value. When a live read fails, the page says "unknown" and keeps the dated snapshot instead of showing zero.</p>
   </footer>
 </div>
 <script>
@@ -342,33 +342,33 @@ canvas#shareCanvas{max-width:100%;height:auto;border:1px solid var(--line);borde
 var CONFIG = {
   network: "sepolia", chainId: 11155111, chainIdHex: "0xaa36a7",
   deploymentRecord: "https://docs.squeekchain.com/assets/deployments/sepolia.json",
-  release: "squeeks-sepolia-core3-mining6-001", deploymentBlock: 11902282,
+  release: "stream-game-sepolia-test-20261026-01", deploymentBlock: 11998937,
   contracts: {
-    core:   { address:"0x74665dAecA35A2303e767E76a2FF1FB6F93e119f", kind:"transparent proxy", implementation:"0x0a71c86ab63a77675002a389fdf4d096a07b11e2", implementationVersion:3, runtimeHash:"0xe8a5a5aa913141ddd8951cf9fcc1375044b541773e5b0bf8ee04a5c7ac2d194d", layoutDigest:"0x9a9c008e029460808209571703fbf2679785874e0e6d3232f16a864d12abcb20", proxyAdmin:"0x05a9af6c3f6780dd58168f2e145cdd0d64564a5e" },
-    mining: { address:"0x3beE588fC20dE788Bac17d33b41Da7346cb27EC4", kind:"transparent proxy", implementation:"0x08890b360c65fd878344bf6e23d1c36358433b4e", implementationVersion:6, runtimeHash:"0x6097cf8e8f96ea654878ab0a35410240ab1b05668c08ce1b3f99e04116e88bc1", layoutDigest:"0xace564e9c052f30122779a32fdf3333ebce7cc708eae9c01cb7875b4f6ad37a6", proxyAdmin:"0x7369d930f8dfb7a6657578eda5906d3472e4ac9a" },
+    core:   { address:"0x74665dAecA35A2303e767E76a2FF1FB6F93e119f", kind:"transparent proxy", implementation:"0x0a71c86ab63a77675002a389fdf4d096a07b11e2", implementationVersion:3, runtimeHash:"0xd8f2fb3c7dcf63e6dc0378ce5f85ceea52a876ae1f0cd66ac8631c3103371f8a", layoutDigest:"0x9a9c008e029460808209571703fbf2679785874e0e6d3232f16a864d12abcb20", proxyAdmin:"0x05a9af6c3f6780dd58168f2e145cdd0d64564a5e" },
+    mining: { address:"0x3beE588fC20dE788Bac17d33b41Da7346cb27EC4", kind:"transparent proxy", implementation:"0x08890b360c65fd878344bf6e23d1c36358433b4e", implementationVersion:9, runtimeHash:null, layoutDigest:"0x136850fc0e19543752b7382cde164f10588dc3b4648e7d704f2f06394ead8b90", proxyAdmin:"0x7369d930f8dfb7a6657578eda5906d3472e4ac9a" },
     tokenSQK:{ address:"0x6872bfa5ccc3e9e440c6c16e5ffdabb8dba4cc76", kind:"immutable" },
     nft:    { address:"0x0eAF3E0d40A0a8E5a6Ac030b2459E9FB0B7905c6", kind:"immutable" }
   },
   operational: { timelock:"0x6B35AB6E96EF292E4fdD3f15a4E812f3CA291844", guardian:"0x0E1B21ED2fc5fc48E221D3E863f09589Cb490e73", reporter:"0xB317AB7Cc24fD5d94EA120B3b189bc6527a7d0Aa", keeper:"0x64822a06193ddff61c0de95a0d515bc344d5e433" },
-  coreConfiguration: { streamId:"0xa0186b1a24b217f12f56c8574b492e286d00cd94bb5546cba45b048b19c60e44", genesisTimestamp:1791847800, roundDuration:600, maxWorkPerRound:10000, blockUnitsPerBlock:1000000000 },
+  coreConfiguration: { streamId:"0x52e443e4e0d236ff0c07f4cdc518c594a3d680d20abb1481510efbed0ec73633", genesisTimestamp:1793022600, roundDuration:600, maxWorkPerRound:10000, blockUnitsPerBlock:1000000000 },
   rpcs: ["https://ethereum-sepolia-rpc.publicnode.com","https://rpc.sepolia.org","https://sepolia.drpc.org"],
   apiBase: "https://api.squeekchain.com/v1",
   implSlot: "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
   adminSlot: "0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103"
 };
 var SEL = { ownerOf:"0x6352211e", position:"0x7400ef36", claimable:"0x5f369bc8", claim:"0x5fd53f4c", merge:"0xfaf2e326", checkpoint:"0xc2c4c5c1", checkpointStatus:"0x001c856f", implVersion:"0xe5900225", implAddress:"0x9d4237ce", layoutDigest:"0x85fabc21", core:"0xf2f4eb26", mining:"0x662fac39", configuration:"0x6c70bee9", coreState:"0xc19d93fb", owner:"0x8da5cb5b" };
-var ERRORS = { "0x82b42900":"Unauthorized — the signer is not the current owner; an approved operator cannot claim or merge.", "0xed3c247c":"InvalidClaim — empty, oversized, duplicate or unsorted batch.", "0xce7e065e":"InvalidPosition — this ID has no live position (burned or unminted).", "0xb12d10d8":"InvalidMerge — same ID twice, levels differ, or maximum level reached.", "0x00544be0":"PendingActivation — mint/merge power is not applied yet; wait for a checkpoint to process the pending round.", "0x0c6485f2":"CooldownActive — completed Squeek block height is still below nextMergeBlock.", "0x3db78c7c":"RoundNotSettled — nothing new to checkpoint yet.", "0x8ae7acea":"CorePaused — SqueekCore is paused." };
+var ERRORS = { "0x82b42900":"Unauthorized: the signer isn't the current owner. An approved operator can't claim or merge.", "0xed3c247c":"InvalidClaim: the batch is empty, too big, has duplicates or isn't sorted.", "0xce7e065e":"InvalidPosition: this ID has no live position (burned or never minted).", "0xb12d10d8":"InvalidMerge: same ID twice, different levels, or already at max level.", "0x00544be0":"PendingActivation: power from a mint or merge hasn't applied yet. Wait for a checkpoint to process the pending round.", "0x0c6485f2":"CooldownActive: the completed Squeek block height is still below nextMergeBlock.", "0x3db78c7c":"RoundNotSettled: nothing new to checkpoint yet.", "0x8ae7acea":"CorePaused: SqueekCore is paused." };
 function decodeRevert(dataHex){
-  if(!dataHex || typeof dataHex!=="string" || dataHex.length<10) return "reverted with no decodable reason";
+  if(!dataHex || typeof dataHex!=="string" || dataHex.length<10) return "reverted with no readable reason";
   var sel=dataHex.slice(0,10).toLowerCase();
   if(ERRORS[sel]){ var extra=""; try{ if(dataHex.length>=74){ var a=BigInt("0x"+dataHex.slice(10,74)); extra=" (first argument: "+a.toString()+")"; } }catch(e){} return ERRORS[sel]+extra; }
   if(sel==="0x08c379a0"){ try{ var off=Number(BigInt("0x"+dataHex.slice(10,74))); var len=Number(BigInt("0x"+dataHex.slice(10+off*2,74+off*2))); var s=""; for(var i=0;i<len;i++) s+=String.fromCharCode(parseInt(dataHex.slice(74+off*2+i*2,76+off*2+i*2),16)); return "Revert string: "+s; }catch(e){ return "reverted (Error(string), undecodable)"; } }
-  return "reverted with unknown error selector "+sel+" — reported as-is, not retried with different IDs";
+  return "reverted with an unknown error ("+sel+"). Shown as-is, not retried with different IDs.";
 }
 /* ============ Snapshot (31 Oct 2026, 15:16 WAT) ============ */
 var SNAP = {
   settledRound: 721, currentRound: 723, blockHeight: 5204, work: 58518, wheel: "IDLE",
-  genesisTs: 1793022600, roundSeconds: 600,
+  genesisTs: CONFIG.coreConfiguration.genesisTimestamp, roundSeconds: CONFIG.coreConfiguration.roundDuration,
   econ: { maxLevel:10, basePower:[1000,2200,4840,10648,23426,51536,113380,249436,548759,1207269], cooldown:[0,3000,7000,14000,21000,28000,35000,42000,49000,0], source:"snapshot" },
   squeeks: {
     "1":  {id:1, known:true, owner:"0x598958abf7d8db8dd468cb53dd6ba705581bff54", custody:"wallet", level:1, power:1000, merge:"ready", nextMerge:"0", palette:"Acid Lime", pattern:"Horizontal Split", glyphs:"Body Diamond · Face Cross · Eye Circle", hue:"#8dff3a"},
@@ -392,7 +392,7 @@ function $(id){ return document.getElementById(id); }
 function short(a){ return a ? a.slice(0,6)+"…"+a.slice(-4) : "—"; }
 function fmt(n){ return n==null||n===""||typeof n==="undefined" ? "unknown" : Number(n).toLocaleString("en-GB"); }
 function fmtSQK(baseUnits){ try{ var v=BigInt(baseUnits); var whole=v/1000000000000000000n; var frac=(v%1000000000000000000n).toString().padStart(18,"0").slice(0,4); return whole.toLocaleString("en-GB")+"."+frac+" SQK"; }catch(e){ return "unknown"; } }
-function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+function sqkOrUnknown(v){ return (v==null||v==="") ? "unknown" : fmtSQK(v); } function parseCustody(c){ if(typeof c==="string") return (c==="staking"||c==="wallet") ? c : "unknown"; if(c && typeof c==="object"){ if(c.depositor) return "staking"; if(("depositor" in c) && c.owner) return "wallet"; if(c.kind==="staking"||c.kind==="wallet") return c.kind; } return "unknown"; } function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
 var current = SNAP.squeeks["1"];
 var settled = SNAP.settledRound, liveWork = SNAP.work, coreHeight = SNAP.blockHeight;
 var lastEvolvedById = {}; /* tokenId -> {round, type, at} from real events only */
@@ -405,11 +405,11 @@ var burrowAccount = null;
 /* ============ API fetch wrapper — schemaVersion, unavailable, 429/Retry-After (fix 11) ============ */
 function apiGet(path, expectedSchema){
   return fetch(CONFIG.apiBase+path).then(function(r){
-    if(r.status===429){ var ra=r.headers.get("Retry-After"); throw new Error("rate limited by the API"+(ra?(" — Retry-After "+ra+"s"):"")+". Not retried automatically."); }
+    if(r.status===429){ var ra=r.headers.get("Retry-After"); throw new Error("the API is rate limiting requests"+(ra?(" (retry after "+ra+"s)"):"")+". Not retried automatically."); }
     if(!r.ok) throw new Error("API HTTP "+r.status);
     return r.json().then(function(j){
-      if(j && typeof j.schemaVersion!=="undefined" && expectedSchema!=null && String(j.schemaVersion)!==String(expectedSchema)) throw new Error("schemaVersion mismatch: expected "+expectedSchema+", got "+j.schemaVersion+" — treating this read as unknown");
-      if(j && j.status==="unavailable") throw new Error("endpoint reports status: unavailable — value unknown, never zero");
+      if(j && typeof j.schemaVersion!=="undefined" && expectedSchema!=null && String(j.schemaVersion)!==String(expectedSchema)) throw new Error("schemaVersion mismatch: expected "+expectedSchema+", got "+j.schemaVersion+". Treating this read as unknown.");
+      if(j && j.status==="unavailable") throw new Error("the endpoint reports status: unavailable, so the value is unknown");
       return j;
     });
   });
@@ -443,7 +443,7 @@ function ownerOfLive(tokenId){
   return ethCall(CONFIG.contracts.nft.address, data).then(function(j){
     if(j && j.result && /^0x[0-9a-fA-F]{64}$/.test(j.result)) return "0x"+j.result.slice(-40).toLowerCase();
     if(j && j.error) throw new Error("ownerOf reverted: "+decodeRevert(j.error.data||"")+" ("+(j.error.message||"")+")");
-    throw new Error("ownerOf read unavailable from all RPCs — unknown, not zero");
+    throw new Error("couldn't read ownerOf from any RPC, so the owner is unknown");
   });
 }
 function positionLive(tokenId){
@@ -451,7 +451,7 @@ function positionLive(tokenId){
   return ethCall(CONFIG.contracts.mining.address, data).then(function(j){
     if(j && j.result){ var h=j.result; return { activeWeight:wordAt(h,0), pendingWeight:wordAt(h,1), pendingRound:wordAt(h,2), nextMergeBlock:wordAt(h,3), level:wordAt(h,4) }; }
     if(j && j.error) throw new Error("position reverted: "+decodeRevert(j.error.data||""));
-    throw new Error("position read unavailable — unknown");
+    throw new Error("couldn't read position, so it is unknown");
   });
 }
 function claimableLive(ids){
@@ -459,14 +459,14 @@ function claimableLive(ids){
   return ethCall(CONFIG.contracts.mining.address, data).then(function(j){
     if(j && j.result) return wordAt(j.result,0);
     if(j && j.error) throw new Error("claimable reverted: "+decodeRevert(j.error.data||""));
-    throw new Error("claimable read unavailable — unknown");
+    throw new Error("couldn't read claimable, so it is unknown");
   });
 }
 function simulate(to, data, from){
   return ethCall(to, data, from).then(function(j){
     if(j && j.result!==undefined && !j.error) return { ok:true, result:j.result };
     if(j && j.error) return { ok:false, error:decodeRevert(j.error.data||"")+" — "+(j.error.message||"simulation reverted") };
-    return { ok:false, error:"simulation unavailable from all RPCs — unknown" };
+    return { ok:false, error:"couldn't run the simulation on any RPC" };
   });
 }
 function estimateGas(from, to, data){
@@ -486,7 +486,7 @@ function copyText(t, msgEl){ if(navigator.clipboard) navigator.clipboard.writeTe
    Unavailable = "Unknown" in BOTH places, never zero, never a default. */
 var powerSeq = 0;
 function renderPowerUnknown(note){
-  var link = ' — <a href="#ownerPowerReadout">see Power readout in Owner Actions \u2193</a>';
+  var link = '. <a href="#ownerPowerReadout">See the power readout below \u2193</a>';
   if($("sqActivePower")) $("sqActivePower").innerHTML = "Unknown" + link;
   if($("sqPending")) $("sqPending").innerHTML = "Unknown" + link;
   if($("ownerActivePower")) $("ownerActivePower").textContent = "Unknown";
@@ -499,25 +499,25 @@ function renderPowerFromPos(pos){
   var activeTxt = (pos.activeWeight===null || typeof pos.activeWeight==="undefined") ? "Unknown" : fmt(Number(pos.activeWeight)) + " (active weight, on-chain position)";
   var pendingTxt, pendingRoundTxt;
   if(pos.pendingRound===null || typeof pos.pendingRound==="undefined"){ pendingTxt = "Unknown"; pendingRoundTxt = "Unknown"; }
-  else if(pos.pendingRound===0n){ pendingTxt = "None \u2014 no power pending"; pendingRoundTxt = "None \u2014 no pending round"; }
+  else if(pos.pendingRound===0n){ pendingTxt = "None. No power pending."; pendingRoundTxt = "None. No pending round."; }
   else {
     pendingTxt = "Power pending for round " + pos.pendingRound.toString() + " until the next checkpoint" + (pos.pendingWeight!==null && typeof pos.pendingWeight!=="undefined" ? " \u00b7 pending weight " + pos.pendingWeight.toString() : "");
-    pendingRoundTxt = pos.pendingRound.toString() + " \u2014 until the next checkpoint";
+    pendingRoundTxt = pos.pendingRound.toString() + " (until the next checkpoint)";
   }
-  var link = ' \u2014 <a href="#ownerPowerReadout">Power readout in Owner Actions \u2193</a>';
+  var link = '. <a href="#ownerPowerReadout">See the power readout below \u2193</a>';
   if($("sqActivePower")) $("sqActivePower").innerHTML = esc(activeTxt) + link;
   if($("sqPending")) $("sqPending").innerHTML = esc(pendingTxt) + link;
   if($("ownerActivePower")) $("ownerActivePower").textContent = activeTxt;
   if($("ownerPendingPower")) $("ownerPendingPower").textContent = pendingTxt;
   if($("ownerPendingRound")) $("ownerPendingRound").textContent = pendingRoundTxt;
   if($("ownerPowerFor")) $("ownerPowerFor").textContent = "Squeek #" + (current ? current.id : "—");
-  if($("ownerPowerMsg")) $("ownerPowerMsg").textContent = "Loaded live from position() on SqueekMining for Squeek #" + (current ? current.id : "—") + " \u2014 same values as the viewer above.";
+  if($("ownerPowerMsg")) $("ownerPowerMsg").textContent = "Loaded live from position() on SqueekMining for Squeek #" + (current ? current.id : "—") + ". Same values as the viewer above.";
 }
 function loadPowerReadout(){
-  if(!current || current.id==null){ renderPowerUnknown("No Squeek selected \u2014 power unknown."); return Promise.resolve(); }
+  if(!current || current.id==null){ renderPowerUnknown("No Squeek selected, so power is unknown."); return Promise.resolve(); }
   var tokenId = String(current.id);
   powerSeq++; var mySeq = powerSeq;
-  renderPowerUnknown("Reading position() for Squeek #" + tokenId + " \u2014 shows unknown until the read succeeds.");
+  renderPowerUnknown("Reading position() for Squeek #" + tokenId + ". Shows unknown until the read succeeds.");
   /* restore the loading note after renderPowerUnknown, which set the fields to Unknown */
   if($("ownerPowerMsg")) $("ownerPowerMsg").textContent = "Reading position() for Squeek #" + tokenId + "\u2026";
   return positionLive(tokenId).then(function(pos){
@@ -527,13 +527,13 @@ function loadPowerReadout(){
   }).catch(function(err){
     if(mySeq!==powerSeq) return;
     if(String(current.id)!==tokenId) return;
-    renderPowerUnknown("Position read unavailable for Squeek #" + tokenId + " (" + err.message + ") \u2014 active and pending power are unknown in both the viewer and this readout, never zero.");
+    renderPowerUnknown("Position read unavailable for Squeek #" + tokenId + " (" + err.message + "). Active and pending power show as unknown in both the viewer and this readout.");
   });
 }
 
 /* ============ Deployment checks — Quickstart verify.ts, stop on mismatch (fix 2) ============ */
 function runDeployChecks(){
-  var box=$("deployChecks"); box.innerHTML="<p class='small'>Running Quickstart deployment checks at the latest Sepolia block…</p>";
+  var box=$("deployChecks"); box.innerHTML="<p class='small'>Running the Quickstart deployment checks against the latest Sepolia block…</p>";
   var rows=[];
   function row(name, ok, detail){ rows.push({name:name, ok:ok, detail:detail}); }
   function slotCheck(label, proxy, expectedImpl, expectedAdmin, expectedVersion, expectedLayout){
@@ -555,14 +555,14 @@ function runDeployChecks(){
       return ethCall(proxy, SEL.layoutDigest);
     }).then(function(j){
       var d=j&&j.result; row(label+" storage layout digest", !!d && d.toLowerCase()===expectedLayout.toLowerCase(), d?("found "+String(d).slice(0,18)+"…"):"unavailable");
-    }).catch(function(){ row(label+" checks", false, "RPC unavailable — unknown, treated as not verified"); });
+    }).catch(function(){ row(label+" checks", false, "RPC unavailable, so this counts as not verified"); });
   }
   return rpcCall("eth_chainId",[]).then(function(j){
     var ok = j && j.result && parseInt(j.result,16)===CONFIG.chainId;
     row("Chain ID", !!ok, j&&j.result?("found "+parseInt(j.result,16)+", expected 11155111"):"unavailable");
-    return slotCheck("SqueekCore", CONFIG.contracts.core.address, CONFIG.contracts.core.implementation, CONFIG.contracts.core.proxyAdmin, 3, CONFIG.contracts.core.layoutDigest);
+    return slotCheck("SqueekCore", CONFIG.contracts.core.address, CONFIG.contracts.core.implementation, CONFIG.contracts.core.proxyAdmin, CONFIG.contracts.core.implementationVersion, CONFIG.contracts.core.layoutDigest);
   }).then(function(){
-    return slotCheck("SqueekMining", CONFIG.contracts.mining.address, CONFIG.contracts.mining.implementation, CONFIG.contracts.mining.proxyAdmin, 6, CONFIG.contracts.mining.layoutDigest);
+    return slotCheck("SqueekMining", CONFIG.contracts.mining.address, CONFIG.contracts.mining.implementation, CONFIG.contracts.mining.proxyAdmin, CONFIG.contracts.mining.implementationVersion, CONFIG.contracts.mining.layoutDigest);
   }).then(function(){
     return ethCall(CONFIG.contracts.mining.address, SEL.core);
   }).then(function(j){
@@ -584,10 +584,10 @@ function runDeployChecks(){
     var html="<ul class='check' style='margin:0;padding-left:18px'>";
     rows.forEach(function(r){ html+="<li>"+(r.ok?"✓":"✕")+" <strong>"+esc(r.name)+"</strong> — <span class='small'>"+esc(r.detail)+"</span></li>"; });
     html+="</ul>";
-    html+= allOk ? "<div class='okbox' style='margin-top:10px'><strong>✓ Deployment verified against sepolia.json.</strong> Owner actions below are unlocked for preparation (still never signed here).</div>"
-                 : "<div class='errbox' style='margin-top:10px'><strong>✕ Deployment check mismatch or unavailable — owner actions are STOPPED.</strong> Nothing will be prepared until every check passes against the published record. An unavailable read is unknown, never assumed good.</div>";
+    html+= allOk ? "<div class='okbox' style='margin-top:10px'><strong>✓ Deployment matches sepolia.json.</strong> Owner actions are unlocked for preparation. Nothing is ever signed here.</div>"
+                 : "<div class='errbox' style='margin-top:10px'><strong>✕ A deployment check failed or couldn't be read, so owner actions are stopped.</strong> Nothing gets prepared until every check passes against the published record. A check that can't be read counts as failed.</div>";
     box.innerHTML=html;
-    $("checksMsg").textContent = allOk ? "All checks passed." : "Stopped: checks did not all pass.";
+    $("checksMsg").textContent = allOk ? "All checks passed." : "Stopped: not every check passed.";
     return allOk;
   });
 }
@@ -663,23 +663,23 @@ function render(){
   $("sqName").textContent = "SQUEEK #"+sq.id+(sq.known?"":" — unknown");
   if($("ownerPowerFor")) $("ownerPowerFor").textContent = "Squeek #"+sq.id;
   var badge=$("stageBadge");
-  if(st===null){ badge.textContent="Stage unknown — not loaded"; badge.className="badge snap"; }
-  else { badge.textContent="Stage "+st+" · "+STAGES[st].name+" — derived from settled data"; badge.className="badge settled"; }
+  if(st===null){ badge.textContent="Stage unknown (not loaded)"; badge.className="badge snap"; }
+  else { badge.textContent="Stage "+st+" · "+STAGES[st].name+" · from settled data"; badge.className="badge settled"; }
   var cb=$("custodyBadge");
   if(!sq.known){ cb.textContent="Custody — unknown"; cb.className="badge snap"; }
-  else if(isSleeping(sq)){ cb.textContent="💤 In wallet — asleep, earning nothing"; cb.className="badge live"; }
-  else if(sq.custody==="staking"){ cb.textContent="Deposited — awake & earning"; cb.className="badge settled"; }
+  else if(isSleeping(sq)){ cb.textContent="💤 In wallet: asleep, earning nothing"; cb.className="badge live"; }
+  else if(sq.custody==="staking"){ cb.textContent="Deposited: awake and earning"; cb.className="badge settled"; }
   else { cb.textContent="Custody — unknown"; cb.className="badge snap"; }
   /* next-stage progress from real thresholds (fix 33) */
-  if(st===null){ $("stageBar").style.width="0%"; $("stageExplain").textContent="This token has not loaded, so its stage is unknown. Load it live — an unloaded token is never assumed to be Level 1 / Power 1,000."; }
-  else if(st>=4){ $("stageBar").style.width="100%"; $("stageExplain").textContent="Stage 4 · Legendary is the top stage (Level "+ECON.maxLevel+" max, base power "+fmt(stagePowerFor(4))+" from the economy table)."; }
+  if(st===null){ $("stageBar").style.width="0%"; $("stageExplain").textContent="This token hasn't loaded, so its stage is unknown. Load it first. An unloaded token is never assumed to be Level 1."; }
+  else if(st>=4){ $("stageBar").style.width="100%"; $("stageExplain").textContent="Stage 4 · Legendary is the top stage (max level "+ECON.maxLevel+", base power "+fmt(stagePowerFor(4))+" per the economy table)."; }
   else {
     var next=st+1, needLvl=STAGE_LEVELS[next], needPow=stagePowerFor(next);
     var lvlFrac=Math.min(1, sq.level/needLvl), powFrac=Math.min(1, sq.power/needPow);
     $("stageBar").style.width=Math.round(Math.min(lvlFrac,powFrac)*100)+"%";
-    $("stageExplain").textContent="Stage "+st+" · "+STAGES[st].name+" is derived from settled round "+fmt(settled)+" + Level "+sq.level+" / base power "+fmt(sq.power)+" (economy table, "+ECON.source+"). Next: Stage "+next+" · "+STAGES[next].name+" needs Level ≥ "+needLvl+" and base power ≥ "+fmt(needPow)+" — the bar shows the weaker of the two. Live round "+SNAP.currentRound+" is not counted.";
+    $("stageExplain").textContent="Stage "+st+" · "+STAGES[st].name+" comes from settled round "+fmt(settled)+", Level "+sq.level+" and base power "+fmt(sq.power)+" (economy table: "+ECON.source+"). Next up is Stage "+next+" · "+STAGES[next].name+", which needs Level ≥ "+needLvl+" and base power ≥ "+fmt(needPow)+". The bar follows whichever of the two is further behind. Live round "+SNAP.currentRound+" doesn't count.";
   }
-  if(prevStage!==null && st!==null && prevStage!==st && current.known){ showBanner("Squeek #"+sq.id+" derived stage changed: Stage "+prevStage+" → Stage "+st+" after settlement to round "+fmt(settled)+"."); }
+  if(prevStage!==null && st!==null && prevStage!==st && current.known){ showBanner("Squeek #"+sq.id+" moved from Stage "+prevStage+" to Stage "+st+" after round "+fmt(settled)+" settled."); }
   if(st!==null) prevStage=st;
   var track=$("stageTrack"); track.innerHTML="";
   STAGES.forEach(function(s){
@@ -690,7 +690,7 @@ function render(){
   });
   /* viewer fields — unknown state (fix 7) */
   $("sqOwner").textContent = sq.known ? (short(sq.owner)+"  ("+sq.owner+")") : "Unknown — not loaded";
-  $("sqCustody").textContent = !sq.known ? "Unknown" : (sq.custody==="wallet" ? "Wallet — sleeping, earns nothing" : sq.custody==="staking" ? "Deposited (staking) — awake, earning" : "Unknown");
+  $("sqCustody").textContent = !sq.known ? "Unknown" : (sq.custody==="wallet" ? "In wallet (asleep, earns nothing)" : sq.custody==="staking" ? "Deposited (staking): awake, earning" : "Unknown");
   $("sqLevel").textContent = sq.known ? (sq.level+" / "+ECON.maxLevel) : "Unknown";
   $("sqPower").textContent = sq.known ? fmt(sq.power) : "Unknown";
   $("sqMerge").textContent = sq.known ? ((sq.merge||"unknown")+" · next merge height "+sq.nextMerge) : "Unknown";
@@ -698,8 +698,8 @@ function render(){
   $("sqPattern").textContent = sq.known ? sq.pattern : "Unknown";
   $("sqGlyphs").textContent = sq.known ? sq.glyphs : "Unknown";
   var le=lastEvolvedById[String(sq.id)];
-  $("sqLastEvolved").textContent = le ? (le.type+" observed in the events feed · "+le.at) : "None observed — no merge/deposit event for this Squeek in the feed";
-  if(burrowAccount && burrowAccount.rewards){ $("sqLifetime").textContent = fmtSQK(burrowAccount.rewards.lifetimePaidBaseUnits||"0")+" claimed lifetime (account "+short(burrowAccount.address)+") + "+fmtSQK(burrowAccount.rewards.lifetimeCompoundedBaseUnits||"0")+" compounded"; }
+  $("sqLastEvolved").textContent = le ? (le.type+" (events feed) · "+le.at) : "Nothing seen yet. No merge or deposit for this Squeek in the events feed.";
+  if(burrowAccount && burrowAccount.rewards){ $("sqLifetime").textContent = sqkOrUnknown(burrowAccount.rewards.lifetimePaidBaseUnits)+" claimed lifetime (account "+short(burrowAccount.address)+") + "+sqkOrUnknown(burrowAccount.rewards.lifetimeCompoundedBaseUnits)+" compounded"; }
   drawHamsterTo($("hamster"), st===null?1:st, sq, { sleeping: sq.known && isSleeping(sq), unknown: !sq.known });
   drawFuse();
   renderTimeline(); renderSqHistory(); runSim(true);
@@ -707,12 +707,12 @@ function render(){
 function renderTimeline(){
   var sq=current; var st=realStage(); var tl=$("timeline"); tl.innerHTML="";
   var items=[];
-  if(!sq.known){ items=[{t:"Derived view unavailable", d:"Token not loaded — every value here is unknown, not zero.", locked:true, tag:"Derived"}]; }
+  if(!sq.known){ items=[{t:"Breakdown unavailable", d:"Token not loaded, so everything here is unknown.", locked:true, tag:"Derived"}]; }
   else items=[
-    {t:"Derived: token exists in the public API (schema v2)", d:"Squeek #"+sq.id+" — API custody owner "+short(sq.owner)+", Level "+sq.level+", base power "+fmt(sq.power)+", custody "+sq.custody+". This is a derived summary of API data, not a recorded event.", locked:false, tag:"Derived"},
-    {t:"Derived: current stage "+(st===null?"unknown":st+" · "+STAGES[st].name), d:"Computed from the economy base-power table ("+ECON.source+") and the settled frontier at round "+fmt(settled)+". Completed settled Squeek blocks are what count; live rounds are excluded.", locked:false, tag:"Derived"},
-    {t:"Derived: next stage locked", d: st!==null&&st<4 ? ("Stage "+(st+1)+" needs Level ≥ "+STAGE_LEVELS[st+1]+" and base power ≥ "+fmt(stagePowerFor(st+1))+". This Squeek is Level "+sq.level+" / "+fmt(sq.power)+".") : "Top stage or unknown.", locked:true, tag:"Derived"},
-    {t:"Live round — deliberately ignored", d:"The open round is shown in the network strip but excluded here. If it settles, the frontier moves and this derived view is recomputed.", locked:true, tag:"Live · not counted"}
+    {t:"Token found in the public API (schema v2)", d:"Squeek #"+sq.id+": API owner "+short(sq.owner)+", Level "+sq.level+", base power "+fmt(sq.power)+", custody "+sq.custody+". This summarises API data. It isn't a recorded event.", locked:false, tag:"Derived"},
+    {t:"Current stage: "+(st===null?"unknown":st+" · "+STAGES[st].name), d:"Worked out from the economy base-power table ("+ECON.source+") and the settled frontier at round "+fmt(settled)+". Only settled Squeek blocks count.", locked:false, tag:"Derived"},
+    {t:"Next stage: locked", d: st!==null&&st<4 ? ("Stage "+(st+1)+" needs Level ≥ "+STAGE_LEVELS[st+1]+" and base power ≥ "+fmt(stagePowerFor(st+1))+". This Squeek is Level "+sq.level+" / "+fmt(sq.power)+".") : "Already at the top stage, or unknown.", locked:true, tag:"Derived"},
+    {t:"Live round: ignored", d:"The open round shows in the network strip but isn't counted here. Once it settles, the frontier moves and this list updates.", locked:true, tag:"Live · not counted"}
   ];
   items.forEach(function(it){
     var li=document.createElement("li"); if(it.locked) li.className="locked";
@@ -725,7 +725,7 @@ function renderTimeline(){
 function renderSqHistory(){
   var box=$("sqHistory"); if(!box) return;
   var evs=(window.__EVENTS||[]).filter(function(e){ return eventMentions(e, String(current.id)); });
-  if(!evs.length){ box.innerHTML="<p class='small'>No merge or deposit event for Squeek #"+esc(current.id)+" found in the events feed yet — history is built only from real events, so this stays empty rather than invented.</p>"; return; }
+  if(!evs.length){ box.innerHTML="<p class='small'>No merge or deposit events for Squeek #"+esc(current.id)+" in the events feed yet. History only shows real events, so it stays empty until one appears.</p>"; return; }
   var html="<ul style='margin:0;padding-left:18px'>";
   evs.forEach(function(e){ html+="<li><strong>"+esc(e.type)+"</strong> <span class='small'>"+esc(e.occurredAt||"")+" · tx "+esc(short(e.source&&e.source.transactionHash||""))+"</span></li>"; });
   box.innerHTML=html+"</ul>";
@@ -751,7 +751,7 @@ function selectSqueek(idStr){
   document.querySelectorAll(".squeek-chip").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-id")===String(id)); });
   if(current.known){ $("simLevel").value=current.level; $("simPower").value=current.power; }
   render();
-  renderPowerUnknown("Reading position() for Squeek #"+id+" \u2014 shows unknown until the read succeeds.");
+  renderPowerUnknown("Reading position() for Squeek #"+id+". Shows unknown until the read succeeds.");
   loadPowerReadout();
   tryLive(id, mySeq);
 }
@@ -759,7 +759,7 @@ function tryLive(id, mySeq){
   var msg=$("loadMsg"); msg.textContent="Loading Squeek #"+id+" live…";
   apiGet("/squeeks/"+id, 2).then(function(j){
     if(mySeq!==reqSeq) return; /* stale response — ignore (fix 8) */
-    if(!j || j.status!=="available" || !j.tokenId){ msg.textContent="API answered but this Squeek was not available — showing unknown, never zero."; loadPowerReadout(); return; }
+    if(!j || j.status!=="available" || !j.tokenId){ msg.textContent="The API answered but this Squeek isn't available, so it shows as unknown."; loadPowerReadout(); return; }
     var attrs={}; var md=j.metadata||{};
     var traits=[];
     try{ var desc=md.description||""; traits=desc.split(";"); }catch(e){}
@@ -769,17 +769,17 @@ function tryLive(id, mySeq){
     if(!Object.keys(attrMap).length && traits.length){ glyphStr="Unknown (traits in metadata image only)"; }
     else { var parts=[]; ["Body Glyph","Face Glyph","Eye Glyph"].forEach(function(k){ if(attrMap[k]) parts.push(k.replace(" Glyph","")+" "+attrMap[k]); }); if(parts.length) glyphStr=parts.join(" · "); }
     if(SNAP.squeeks[String(j.tokenId)] && String(j.tokenId)===String(id) && glyphStr==="Unknown (traits in metadata image only)"){ var snapSq=SNAP.squeeks[String(j.tokenId)]; glyphStr=snapSq.glyphs; palette=snapSq.palette; pattern=snapSq.pattern; }
-    var custody = j.custody && j.custody.depositor ? "staking" : (j.custody ? "wallet" : "unknown");
+    var custody = parseCustody(j.custody);
     if(j.custody && j.custody.burned) custody="unknown";
     current={ id:j.tokenId, known:true, owner:(j.custody&&j.custody.owner)||"unknown", custody:custody, level:Number(j.level), power:Number(j.basePower), merge:j.mergeState||"unknown", nextMerge:String(j.nextMergeHeight), palette:palette, pattern:pattern, glyphs:glyphStr, hue:hueFor(palette) };
     SNAP.squeeks[String(j.tokenId)]=current;
-    msg.textContent="Loaded live from the API — Squeek #"+id+", Level "+current.level+", base power "+fmt(current.power)+", custody "+current.custody+". (Contract addresses are never taken from the API.)";
+    msg.textContent="Loaded from the API: Squeek #"+id+", Level "+current.level+", base power "+fmt(current.power)+", custody "+current.custody+". Contract addresses never come from the API.";
     $("simLevel").value=current.level; $("simPower").value=current.power;
     render();
     loadPowerReadout();
   }).catch(function(err){
     if(mySeq!==reqSeq) return;
-    msg.textContent="Live read failed ("+err.message+") — "+(SNAP.squeeks[id]?"showing the dated snapshot for #"+id+".":"showing unknown for #"+id+", never zero.");
+    msg.textContent="Couldn't load live data ("+err.message+"). "+(SNAP.squeeks[id]?"Showing the dated snapshot for #"+id+".":"Showing #"+id+" as unknown.");
     render();
     loadPowerReadout();
   });
@@ -790,12 +790,12 @@ function loadEconomy(){
     var nft=j.nft||{};
     if(Array.isArray(nft.basePower) && Array.isArray(nft.cooldownBlocks)){
       ECON={ maxLevel:Number(nft.maximumLevel||10), basePower:nft.basePower.map(Number), cooldown:nft.cooldownBlocks.map(Number), source:"live /v1/economy/state" };
-      var html="<p class='small'>Economy tables — <strong>live</strong> from <code>/v1/economy/state</code> (schema v2). Maximum level "+ECON.maxLevel+". Base power by level: "+ECON.basePower.map(function(v,i){return "L"+(i+1)+" "+fmt(v);}).join(" · ")+". Merge cooldown by level (completed Squeek blocks): "+ECON.cooldown.map(function(v,i){return "L"+(i+1)+" "+fmt(v);}).join(" · ")+".</p>";
-      html+="<p class='tiny'>Note: the published sepolia.json <em>deployment</em> policy lists different weights/cooldowns (L1 1,000/2 blocks … L10 1,023,000) because it is a different deployment from the API's installation. Stage derivation here follows the economy endpoint, as specified; contract calls follow sepolia.json. The difference is shown, not hidden.</p>";
+      var html="<p class='small'>Economy tables: <strong>live</strong> from <code>/v1/economy/state</code> (schema v2). Max level "+ECON.maxLevel+". Base power by level: "+ECON.basePower.map(function(v,i){return "L"+(i+1)+" "+fmt(v);}).join(" · ")+". Merge cooldown by level (completed Squeek blocks): "+ECON.cooldown.map(function(v,i){return "L"+(i+1)+" "+fmt(v);}).join(" · ")+".</p>";
+      html+="<p class='tiny'>Note: stage logic here follows the economy endpoint. Contract calls and checks follow the published deployment record, so if the two ever list different weights or cooldowns, trust the record for anything you sign.</p>";
       $("econTables").innerHTML=html;
       render();
     }
-  }).catch(function(err){ $("econTables").insertAdjacentHTML("beforeend","<p class='tiny'>Live economy read failed ("+esc(err.message)+") — snapshot tables above remain in use and are labelled as snapshot.</p>"); });
+  }).catch(function(err){ $("econTables").insertAdjacentHTML("beforeend","<p class='tiny'>Couldn't load live economy data ("+esc(err.message)+"). The snapshot tables above stay in use.</p>"); });
 }
 /* ============ Burrow — /v1/accounts/{address} with pagination (fix 13–16, 18) ============ */
 function loadBurrow(addr){
@@ -816,29 +816,32 @@ function loadBurrow(addr){
     msg.textContent="Loaded "+tokens.length+" Squeek(s) across "+pages+" page(s).";
     var r=burrowAccount.rewards||{}, p=burrowAccount.power||{}, tc=burrowAccount.tokenCounts||{};
     summary.innerHTML="<div class='row'>"
-      +"<span class='badge settled'>🧺 Snack pouch: "+esc(fmtSQK(r.claimableBaseUnits==null?"0":r.claimableBaseUnits))+" claimable</span>"
-      +"<span class='badge snap'>Lifetime claimed: "+esc(fmtSQK(r.lifetimePaidBaseUnits||"0"))+"</span>"
+      +"<span class='badge settled'>🧺 Snack pouch: "+esc(sqkOrUnknown(r.claimableBaseUnits))+" claimable</span>"
+      +"<span class='badge snap'>Lifetime claimed: "+esc(sqkOrUnknown(r.lifetimePaidBaseUnits))+"</span>"
       +"<span class='badge snap'>Active power — NFT: "+esc(fmt(p.nftPower))+" · SQK: "+esc(fmt(p.sqkPower))+"</span>"
       +"<span class='badge snap'>In wallet: "+esc(tc.wallet==null?"unknown":tc.wallet)+" · Deposited: "+esc(tc.staking==null?"unknown":tc.staking)+"</span>"
-      +"</div><p class='tiny' style='margin-top:8px'>Lifetime SQK claimed is tracked as a growth signal for the account. Active power is the part that earns; for the Squeek selected in the viewer, active and pending power are shown in the <a href='#ownerPowerReadout'>Power readout in Owner Actions</a> (pending via <code>pendingRound</code> until the next checkpoint).</p>";
-    if(!tokens.length){ grid.innerHTML="<p class='small'>This account holds no Squeeks in the API's records — shown as none found, not an error.</p>"; }
+      +"</div><p class='tiny' style='margin-top:8px'>Lifetime claimed SQK is a rough sign of how much the account has grown. Active power is the part that earns. For the Squeek selected in the viewer, active and pending power are in the <a href='#ownerPowerReadout'>power readout</a> (pending via <code>pendingRound</code> until the next checkpoint).</p>";
+    if(!tokens.length){ grid.innerHTML="<p class='small'>This account has no Squeeks in the API's records. That's a result, not an error.</p>"; }
     tokens.slice(0,60).forEach(function(t){
       var item=document.createElement("div"); item.className="burrow-item";
       var cv=document.createElement("canvas"); cv.className="mini-art"; cv.width=24; cv.height=24;
-      var sleeping = t.custody!=="staking";
+      var custodyKnown = (t.custody==="staking"||t.custody==="wallet");
+      var sleeping = t.custody==="wallet";
       var fakeSq={ id:t.tokenId, hue:"#8dff3a", glyphs:(SNAP.squeeks[t.tokenId]||{}).glyphs||"", pattern:(SNAP.squeeks[t.tokenId]||{}).pattern||"" };
       if(SNAP.squeeks[t.tokenId]) fakeSq.hue=SNAP.squeeks[t.tokenId].hue;
-      var stg=stageFor(Number(t.level), Number(t.basePower), settled);
+      var lvl=(t.level==null||isNaN(Number(t.level)))?null:Number(t.level);
+      var bp=(t.basePower!=null&&!isNaN(Number(t.basePower)))?Number(t.basePower):((lvl!=null&&ECON.basePower[lvl-1]!=null)?ECON.basePower[lvl-1]:null);
+      var stg=(lvl==null||bp==null)?null:stageFor(lvl, bp, settled);
       drawHamsterTo(cv, stg===null?1:stg, fakeSq, { sleeping:sleeping });
       var info=document.createElement("div");
-      info.innerHTML="<strong>Squeek #"+esc(t.tokenId)+"</strong> <span class='badge "+(sleeping?"live":"settled")+"'>"+(sleeping?"💤 wallet — asleep":"deposited — awake")+"</span><br><span class='small'>Level "+esc(t.level)+" · base power "+esc(fmt(t.basePower))+" · derived stage "+(stg===null?"unknown":stg+" · "+STAGES[stg].name)+"<br>Merge: "+esc(t.mergeState||"unknown")+" · next merge height "+esc(t.nextMergeHeight)+"</span><br>";
+      info.innerHTML="<strong>Squeek #"+esc(t.tokenId)+"</strong> <span class='badge "+(!custodyKnown?"snap":sleeping?"live":"settled")+"'>"+(!custodyKnown?"custody unknown":sleeping?"💤 wallet — asleep":"deposited — awake")+"</span><br><span class='small'>Level "+esc(lvl==null?"unknown":lvl)+" · base power "+esc(fmt(bp))+" · stage "+(stg===null?"unknown":stg+" · "+STAGES[stg].name)+"<br>Merge: "+esc(t.mergeState||"unknown")+" · next merge height "+esc(t.nextMergeHeight==null?"unknown":t.nextMergeHeight)+"</span><br>";
       var btn=document.createElement("button"); btn.textContent="View #"+t.tokenId; btn.addEventListener("click", function(){ selectSqueek(t.tokenId); document.querySelector("header").scrollIntoView({behavior:"smooth"}); });
       info.appendChild(btn);
       item.appendChild(cv); item.appendChild(info); grid.appendChild(item);
     });
     if(tokens.length>60) grid.insertAdjacentHTML("beforeend","<p class='small'>Showing the first 60 of "+tokens.length+" Squeeks.</p>");
     render();
-  }).catch(function(err){ msg.textContent="Burrow load failed ("+err.message+") — values unknown, never zero."; });
+  }).catch(function(err){ msg.textContent="Couldn't load the burrow ("+err.message+"). Values are unknown."; });
 }
 
 /* ============ Network, wheel, lag, ghost eggs, countdown (fix 9, 26–29) ============ */
@@ -871,16 +874,16 @@ function refreshStatus(){
     var a=j.builder&&j.builder.anchor; var m=j.measurement||{};
     if(a && a.settledThroughRound){
       var newSettled=Number(a.settledThroughRound);
-      if(prevSettled!==null && newSettled>prevSettled) showBanner("Round "+fmt(newSettled)+" has settled. The settled frontier moved from "+fmt(prevSettled)+" — derived stages were recomputed from settled data only.");
+      if(prevSettled!==null && newSettled>prevSettled) showBanner("Round "+fmt(newSettled)+" has settled (the frontier was at "+fmt(prevSettled)+"). Stages were recalculated from settled data only.");
       prevSettled=newSettled; settled=newSettled;
       coreHeight=Number(a.blockHeight||coreHeight); liveWork=Number(m.cumulativeWorkUnits||liveWork);
       $("settledRound").textContent="Round "+fmt(settled);
       $("settledHeight").textContent=fmt(a.blockHeight);
       $("settledWork").textContent=fmt(a.cumulativeWork);
       $("settledAt").textContent=a.confirmedAt?new Date(a.confirmedAt).toLocaleString("en-GB"):"unknown";
-      wheelState.coreStatus=m.coreStatus||"unknown"; wheelState.rpm=Number(m.rpmMilli||0)/1000; wheelState.speed=Number(m.speedMmPerSecond||0); wheelState.freshness=m.freshness||"unknown"; wheelState.observedAt=m.observedAt||null;
+      wheelState.coreStatus=m.coreStatus||"unknown"; wheelState.rpm=(m.rpmMilli==null?null:Number(m.rpmMilli)/1000); wheelState.speed=(m.speedMmPerSecond==null?null:Number(m.speedMmPerSecond)); wheelState.freshness=m.freshness||"unknown"; wheelState.observedAt=m.observedAt||null;
       $("wheelState").textContent=wheelState.coreStatus;
-      $("wheelRpm").textContent=wheelState.rpm; $("wheelSpeed").textContent=fmt(wheelState.speed)+" mm/s";
+      $("wheelRpm").textContent=(wheelState.rpm==null?"unknown":wheelState.rpm); $("wheelSpeed").textContent=fmt(wheelState.speed)+" mm/s";
       var staleAfter=Number(m.staleAfterSeconds||120); var ageSec=wheelState.observedAt?(Date.now()-new Date(wheelState.observedAt).getTime())/1000:99999;
       var online = wheelState.freshness==="online" && ageSec<=staleAfter;
       $("feedState").textContent=(online?"● Online":"● Stale — last observed "+(wheelState.observedAt||"unknown"))+" (freshness: "+wheelState.freshness+")";
@@ -890,22 +893,24 @@ function refreshStatus(){
       $("lagBar").style.width=(liveWork>0?Math.round(Number(a.cumulativeWork)/liveWork*100):100)+"%";
       var ns=$("netSource"); ns.textContent="Refreshed just now"; ns.className="badge snap";
       msg.textContent="Live data loaded."; drawWheel(); render();
-    } else { msg.textContent="API answered without a settled anchor — keeping snapshot (unknown, not zero)."; }
+    } else { msg.textContent="The API answered without a settled anchor, so the snapshot stays."; }
     return apiGet("/measurement/blocks", "game-block-projection.v1");
   }).then(function(j){
     if(!j) return;
-    if(j.roundSchedule){ SNAP.genesisTs=Number(j.roundSchedule.genesisTimestamp||SNAP.genesisTs); SNAP.roundSeconds=Number(j.roundSchedule.roundDurationSeconds||600); }
-    var blocks=j.blocks||[]; var box=$("ghostEggs"); box.innerHTML="";
-    if(!blocks.length){ box.innerHTML="<span class='small'>No provisional blocks reported right now — that is <em>unknown / none reported</em>, not zero progress.</span>"; return; }
-    blocks.slice(0,12).forEach(function(b){
-      var h=String(b.height||b.blockHeight||"?");
-      if(!seenEggs[h]) seenEggs[h]=true;
-      var isSolid = Number(h)<=coreHeight;
-      if(isSolid && !solidEggs[h]) solidEggs[h]=true; /* solidified once, revealed once */
+    /* the countdown uses CONFIG.coreConfiguration only, so the page has one genesis value */
+    var blocks=j.blocks||[]; var box=$("ghostEggs");
+    /* remember every egg we have seen: once a block settles it drops out of the API list, so the page keeps it and turns it solid */
+    blocks.forEach(function(b){ var h=String(b.height||b.blockHeight||""); if(/^\d+$/.test(h)) seenEggs[h]=true; });
+    var heights=Object.keys(seenEggs).map(Number).sort(function(a,b){ return a-b; });
+    if(!heights.length){ box.innerHTML="<span class='small'>No provisional blocks reported right now. That means none reported, not that nothing is happening.</span>"; return; }
+    box.innerHTML="";
+    heights.slice(-12).forEach(function(n){
+      var h=String(n);
+      if(n<=coreHeight && !solidEggs[h]) solidEggs[h]=true; /* solidified once, revealed once */
       var s=document.createElement("span"); s.className="egg"+(solidEggs[h]?" solid":""); s.textContent="🥚 "+h+(solidEggs[h]?" ✓ settled":" · provisional");
       box.appendChild(s);
     });
-  }).catch(function(err){ msg.textContent="Refresh failed ("+err.message+") — snapshot kept, dated above."; });
+  }).catch(function(err){ msg.textContent="Refresh failed ("+err.message+"). The dated snapshot stays."; });
 }
 /* ============ Events feed — badges, recent evolutions, history (fix 19, 20, 32) ============ */
 function loadEvents(){
@@ -914,31 +919,31 @@ function loadEvents(){
     var badgeTypes={"measurement.speed_record":"🏃 Speed record","measurement.speed_milestone":"⚡ Speed milestone","measurement.distance_milestone":"📏 Distance milestone","measurement.daily_distance_milestone":"📏 Daily distance milestone","measurement.distance_streak":"🔥 Distance streak"};
     var badges=evs.filter(function(e){ return badgeTypes[e.type]; });
     var bb=$("eventBadges");
-    if(badges.length){ bb.innerHTML=""; badges.slice(0,8).forEach(function(e){ var s=document.createElement("span"); s.className="badge settled"; s.style.margin="0 6px 6px 0"; s.textContent=badgeTypes[e.type]+" · "+(e.occurredAt||""); bb.appendChild(s); }); var note=document.createElement("p"); note.className="tiny"; note.textContent="One-time badges are taken from real feed events only; an event type that never appears earns no badge."; bb.appendChild(note); }
-    else bb.innerHTML="<p class='small'>No speed-record, distance-milestone or streak events in the latest feed page — no badges invented.</p>";
+    if(badges.length){ bb.innerHTML=""; badges.slice(0,8).forEach(function(e){ var s=document.createElement("span"); s.className="badge settled"; s.style.margin="0 6px 6px 0"; s.textContent=badgeTypes[e.type]+" · "+(e.occurredAt||""); bb.appendChild(s); }); var note=document.createElement("p"); note.className="tiny"; note.textContent="Badges come from real feed events only. No event, no badge."; bb.appendChild(note); }
+    else bb.innerHTML="<p class='small'>No speed records, distance milestones or streaks in the latest feed page, so there are no badges yet.</p>";
     var evos=evs.filter(function(e){ return e.type==="nft.merged"||e.type==="nft.deposited"; });
-    evos.forEach(function(e){ ["tokenId","survivorId","tokenIds"].forEach(function(k){ var v=e.payload&&e.payload[k]; if(v!=null){ (Array.isArray(v)?v:[v]).forEach(function(id){ lastEvolvedById[String(id)]={type:e.type, at:e.occurredAt||"unknown time"}; }); } }); });
+    evos.forEach(function(e){ ["tokenId","survivorTokenId","tokenIds"].forEach(function(k){ var v=e.payload&&e.payload[k]; if(v!=null){ (Array.isArray(v)?v:[v]).forEach(function(id){ lastEvolvedById[String(id)]={type:e.type, at:e.occurredAt||"unknown time"}; }); } }); });
     var re=$("recentEvos");
     if(evos.length){ var html="<ul style='margin:0;padding-left:18px'>"; evos.slice(0,10).forEach(function(e){ html+="<li><strong>"+esc(e.type)+"</strong> <span class='small'>"+esc(e.occurredAt||"")+"</span></li>"; }); re.innerHTML=html+"</ul>"; }
-    else re.innerHTML="<p class='small'>No <code>nft.merged</code> or <code>nft.deposited</code> events on the latest feed page. The feed is paginated by cursor in the API; this page reads the newest page — older evolutions are not shown rather than invented.</p>";
+    else re.innerHTML="<p class='small'>No <code>nft.merged</code> or <code>nft.deposited</code> events on the latest feed page. This page only reads the newest page of the feed, so older evolutions don't appear.</p>";
     render();
   }).catch(function(err){
-    $("recentEvos").innerHTML="<p class='small'>Events feed unavailable ("+esc(err.message)+") — recent evolutions unknown, never zero.</p>";
-    $("eventBadges").innerHTML="<p class='small'>Events feed unavailable — badges unknown.</p>";
+    $("recentEvos").innerHTML="<p class='small'>Couldn't load the events feed ("+esc(err.message)+"). Recent evolutions are unknown.</p>";
+    $("eventBadges").innerHTML="<p class='small'>Events feed unavailable, so badges are unknown.</p>";
   });
 }
 /* ============ Owner: ownership verified (fix 12, 25) ============ */
 var verifiedOwnerFor=null;
-function gateMsg(el){ el.textContent="Deployment checks have not all passed — run them above first. Owner actions stop on any mismatch (fix: verify before preparing)."; }
+function gateMsg(el){ el.textContent="The deployment checks haven't all passed. Run them above first. Owner actions stay stopped until they do."; }
 $("runChecks").addEventListener("click", function(){ runDeployChecks(); });
 $("checkOwner").addEventListener("click", function(){
   var v=$("walletInput").value.trim().toLowerCase(); var msg=$("ownerMsg");
   var box=$("prepBox"); box.style.display="block"; var ok=$("prepOk"), no=$("prepNo");
   ok.style.display="none"; no.style.display="none";
   if(!requireDeploy()){ gateMsg(msg); return; }
-  if(!/^0x[0-9a-f]{40}$/.test(v)){ msg.textContent="That doesn't look like a full 0x wallet address — check and try again."; return; }
-  if(!current.known){ msg.textContent="Current Squeek is unknown — load it before verifying ownership."; return; }
-  msg.textContent="Re-reading ownerOf("+current.id+") live on the published SqueekNFT contract…";
+  if(!/^0x[0-9a-f]{40}$/.test(v)){ msg.textContent="That doesn't look like a full 0x wallet address. Check it and try again."; return; }
+  if(!current.known){ msg.textContent="This Squeek hasn't loaded. Load it before verifying ownership."; return; }
+  msg.textContent="Reading ownerOf("+current.id+") live on the published SqueekNFT contract…";
   ownerOfLive(current.id).then(function(onchain){
     msg.textContent="Live ownerOf read: "+onchain+" (SqueekNFT "+CONFIG.contracts.nft.address+", sepolia.json).";
     positionLive(current.id).then(function(pos){
@@ -947,9 +952,9 @@ $("checkOwner").addEventListener("click", function(){
         verifiedOwnerFor={ addr:v, tokenId:String(current.id) };
         ok.style.display="block";
         $("prepOkText").textContent="The address you entered owns Squeek #"+current.id+" on the published deployment, verified live just now.";
-        $("prepTx").textContent="OWNERSHIP VERIFIED — this is not a transaction\nNetwork: Ethereum Sepolia (chainId 11155111)\nSqueekNFT (sepolia.json): "+CONFIG.contracts.nft.address+"\nSqueek: #"+current.id+" · derived stage "+realStage()+"\nOn-chain owner (ownerOf, read just now): "+onchain+"\nOn-chain position: level "+(pos.level===null?"unknown":pos.level.toString())+" · active power "+(pos.activeWeight===null?"unknown":pos.activeWeight.toString())+" · pending round "+(pos.pendingRound===null?"unknown":pos.pendingRound.toString())+"\nNote: the API's custody record for this token ("+current.owner+") belongs to the API's own installation and may differ — contracts and ownership here come only from sepolia.json + live ownerOf. Prepare a claim or merge below; nothing has been sent or signed.";
+        $("prepTx").textContent="OWNERSHIP VERIFIED (this is not a transaction)\nNetwork: Ethereum Sepolia (chainId 11155111)\nSqueekNFT (sepolia.json): "+CONFIG.contracts.nft.address+"\nSqueek: #"+current.id+" · derived stage "+realStage()+"\nOn-chain owner (ownerOf, read just now): "+onchain+"\nOn-chain position: level "+(pos.level===null?"unknown":pos.level.toString())+" · active power "+(pos.activeWeight===null?"unknown":pos.activeWeight.toString())+" · pending round "+(pos.pendingRound===null?"unknown":pos.pendingRound.toString())+"\nNote: the API's owner record for this token ("+current.owner+") comes from the API's own installation and may differ. Ownership here comes only from sepolia.json plus a live ownerOf read. Prepare a claim or merge below. Nothing has been sent or signed.";
       } else { no.style.display="block"; verifiedOwnerFor=null; }
-    }).catch(function(err){ renderPowerUnknown("Position read failed during ownership verification ("+err.message+") \u2014 active and pending power are unknown in both the viewer and this readout."); msg.textContent="Ownership read, but position read failed ("+err.message+") — shown as unknown."; if(v===onchain){ ok.style.display="block"; $("prepOkText").textContent="The address you entered owns Squeek #"+current.id+" (ownerOf verified live). Position values are unknown."; $("prepTx").textContent="OWNERSHIP VERIFIED — not a transaction\nOwner: "+onchain+"\nSqueek: #"+current.id; verifiedOwnerFor={addr:v, tokenId:String(current.id)}; } else { no.style.display="block"; } });
+    }).catch(function(err){ renderPowerUnknown("Position read failed during ownership verification ("+err.message+"). Active and pending power show as unknown in both the viewer and this readout."); msg.textContent="Ownership confirmed, but the position read failed ("+err.message+"), so those values show as unknown."; if(v===onchain){ ok.style.display="block"; $("prepOkText").textContent="The address you entered owns Squeek #"+current.id+" (ownerOf verified live). Position values are unknown."; $("prepTx").textContent="OWNERSHIP VERIFIED (not a transaction)\nOwner: "+onchain+"\nSqueek: #"+current.id; verifiedOwnerFor={addr:v, tokenId:String(current.id)}; } else { no.style.display="block"; } });
   }).catch(function(err){ msg.textContent="Live ownerOf failed: "+err.message; });
 });
 /* ============ Claim bundle (fix 22, 24, 25) ============ */
@@ -957,24 +962,24 @@ $("prepClaim").addEventListener("click", function(){
   var msg=$("claimMsg"); var out=$("claimOut"); out.innerHTML="";
   if(!requireDeploy()){ gateMsg(msg); return; }
   var owner=$("walletInput").value.trim().toLowerCase();
-  if(!/^0x[0-9a-f]{40}$/.test(owner)){ msg.textContent="Enter your wallet address above first — claim ownership is checked against it."; return; }
+  if(!/^0x[0-9a-f]{40}$/.test(owner)){ msg.textContent="Enter your wallet address above first. Ownership is checked against it."; return; }
   var raw=$("claimIds").value.split(",").map(function(s){ return s.trim(); }).filter(Boolean);
   var capped=raw.map(capTokenId);
   if(!raw.length || capped.some(function(x){ return x===null; })){ msg.textContent="Every ID must be numeric, at most 10 digits. Nothing prepared."; return; }
   var ids=Array.from(new Set(capped.map(function(s){ return BigInt(s); }))).sort(function(a,b){ return a<b?-1:1; });
   var batches=[]; for(var i=0;i<ids.length;i+=32) batches.push(ids.slice(i,i+32));
-  msg.textContent="Re-reading ownerOf for "+ids.length+" ID(s) live, then simulating…";
+  msg.textContent="Reading ownerOf for "+ids.length+" ID(s) live, then simulating…";
   var chain=Promise.resolve([]); var results=[];
   batches.forEach(function(batch){
     chain=chain.then(function(){
       var checks=batch.map(function(id){ return ownerOfLive(id.toString()); });
       return Promise.all(checks).then(function(owners){
-        for(var k=0;k<batch.length;k++){ if(owners[k]!==owner) throw new Error("ID "+batch[k].toString()+" is owned by "+owners[k]+", not by "+owner+" — stopped. No IDs were dropped or substituted."); }
+        for(var k=0;k<batch.length;k++){ if(owners[k]!==owner) throw new Error("ID "+batch[k].toString()+" is owned by "+owners[k]+", not by "+owner+". Stopped. No IDs were dropped or swapped."); }
         return claimableLive(batch.map(String));
       }).then(function(payout){
         var data=encodeClaim(batch.map(String));
         return simulate(CONFIG.contracts.mining.address, data, owner).then(function(sim){
-          if(!sim.ok) throw new Error("Claim simulation failed for batch ["+batch.join(",")+"]: "+sim.error+" Reported as-is — never retried with different IDs.");
+          if(!sim.ok) throw new Error("Claim simulation failed for batch ["+batch.join(",")+"]: "+sim.error+" Shown as-is and not retried with different IDs.");
           return estimateGas(owner, CONFIG.contracts.mining.address, data).then(function(gas){
             results.push({ batch:batch.map(String), payout:payout, data:data, gas:gas });
           });
@@ -986,20 +991,20 @@ $("prepClaim").addEventListener("click", function(){
     var html="";
     results.forEach(function(r,idx){
       var bundle=bundleJSON(owner, CONFIG.contracts.mining.address, r.data);
-      html+="<div class='okbox' style='margin-bottom:10px'><strong>Batch "+(idx+1)+" — simulated payout: "+esc(r.payout===null?"unknown":fmtSQK(r.payout.toString()))+"</strong> for IDs ["+esc(r.batch.join(", "))+"]. Estimated gas: "+esc(r.gas||"unknown — estimate unavailable")+".<br><span class='small'>Unsigned EIP-5792 <code>wallet_sendCalls</code> bundle — sign it in your own wallet. Fractional credit stays on the lowest ID.</span><pre>"+esc(bundle)+"</pre><button data-copy='"+idx+"'>Copy bundle</button></div>";
+      html+="<div class='okbox' style='margin-bottom:10px'><strong>Batch "+(idx+1)+": simulated payout "+esc(r.payout===null?"unknown":fmtSQK(r.payout.toString()))+"</strong> for IDs ["+esc(r.batch.join(", "))+"]. Estimated gas: "+esc(r.gas||"unknown — estimate unavailable")+".<br><span class='small'>Unsigned EIP-5792 <code>wallet_sendCalls</code> bundle. Sign it in your own wallet. Any fractional credit stays on the lowest ID.</span><pre>"+esc(bundle)+"</pre><button data-copy='"+idx+"'>Copy bundle</button></div>";
       r.bundle=bundle;
     });
     out.innerHTML=html||"<p class='small'>Nothing prepared.</p>";
     out.querySelectorAll("button[data-copy]").forEach(function(b){ b.addEventListener("click", function(){ copyText(results[Number(b.getAttribute("data-copy"))].bundle, msg); }); });
-    msg.textContent="Claim bundle(s) prepared — unsigned.";
+    msg.textContent="Claim bundle(s) prepared, unsigned.";
   }).catch(function(err){ msg.textContent=err.message; out.innerHTML="<div class='errbox'>"+esc(err.message)+"</div>"; });
 });
 /* ============ Merge ceremony (fix 21, 24, 25) ============ */
 function drawFuse(){
   var a=$("fuseA"), b=$("fuseB"); if(!a||!b) return;
   var sId=capTokenId($("survivorId").value)||String(current.id); var dId=capTokenId($("donorId").value);
-  var sSq=SNAP.squeeks[sId]||current; var st=stageFor(sSq.level||1, sSq.power||1000, settled);
-  drawHamsterTo(a, st===null?1:st, sSq, { sleeping:false });
+  var sSq=SNAP.squeeks[sId]||current; var st=sSq.known?stageFor(sSq.level, sSq.power, settled):null;
+  drawHamsterTo(a, st===null?1:st, sSq, { sleeping:false, unknown:!sSq.known });
   if(dId && SNAP.squeeks[dId]){ var dSq=SNAP.squeeks[dId]; drawHamsterTo(b, stageFor(dSq.level, dSq.power, settled)||1, dSq, { sleeping:false }); }
   else if(dId){ drawHamsterTo(b, 1, unknownSqueek(dId), { unknown:true }); }
   else { var x=b.getContext("2d"); x.clearRect(0,0,24,24); x.fillStyle="#101010"; x.fillRect(0,0,24,24); }
@@ -1012,7 +1017,7 @@ $("prepMerge").addEventListener("click", function(){
   if(!/^0x[0-9a-f]{40}$/.test(owner)){ msg.textContent="Enter your wallet address above first."; return; }
   var sRaw=capTokenId($("survivorId").value), dRaw=capTokenId($("donorId").value);
   if(!sRaw||!dRaw){ msg.textContent="Enter both a survivor ID and a donor ID (numeric, ≤10 digits)."; return; }
-  if(sRaw===dRaw){ checks.innerHTML="<div class='errbox'>✕ Survivor and donor are the same ID — a merge needs two different Squeeks.</div>"; return; }
+  if(sRaw===dRaw){ checks.innerHTML="<div class='errbox'>✕ Survivor and donor are the same ID. A merge needs two different Squeeks.</div>"; return; }
   msg.textContent="Reading ownerOf + position for both IDs live at the latest block…";
   Promise.all([ownerOfLive(sRaw), ownerOfLive(dRaw), positionLive(sRaw), positionLive(dRaw)]).then(function(res){
     var sOwner=res[0], dOwner=res[1], sPos=res[2], dPos=res[3];
@@ -1023,14 +1028,14 @@ $("prepMerge").addEventListener("click", function(){
       if(dOwner!==owner) problems.push("Donor #"+dRaw+" is owned by "+dOwner+", not by you.");
       if(sPos.level===null||dPos.level===null||sPos.level===0n||dPos.level===0n) problems.push("Both IDs need a live on-chain position.");
       else {
-        if(sPos.level!==dPos.level) problems.push("Levels differ: survivor Level "+sPos.level.toString()+" vs donor Level "+dPos.level.toString()+" — merges need the same level.");
+        if(sPos.level!==dPos.level) problems.push("Levels differ: survivor Level "+sPos.level.toString()+" vs donor Level "+dPos.level.toString()+". Merges need the same level.");
         if(sPos.level>=BigInt(ECON.maxLevel)) problems.push("Already at the maximum level ("+ECON.maxLevel+").");
         if(sPos.pendingRound!==0n) problems.push("Survivor #"+sRaw+" has power pending for round "+(sPos.pendingRound===null?"unknown":sPos.pendingRound.toString())+".");
         if(dPos.pendingRound!==0n) problems.push("Donor #"+dRaw+" has power pending for round "+(dPos.pendingRound===null?"unknown":dPos.pendingRound.toString())+".");
       }
       /* Cooldown bars: API nextMergeHeight − settled Squeek height, and on-chain position nextMergeBlock vs docs core height */
       function coolBar(label, nextMerge, height){
-        if(nextMerge==null||height==null) return "<p class='small'>"+label+": cooldown unknown — a required read was unavailable, never assumed zero.</p>";
+        if(nextMerge==null||height==null) return "<p class='small'>"+label+": cooldown unknown because a required read failed (not assumed to be zero).</p>";
         var rem=nextMerge-height; if(rem<0n) rem=0n;
         var total=nextMerge>0n?nextMerge:1n; var done=total-rem; var pct=Number(done*100n/total);
         return "<p class='small' style='margin:4px 0'>"+label+": "+(rem===0n?"✓ cooldown reached":"<strong>"+rem.toString()+"</strong> completed Squeek blocks remaining")+" (next merge height "+nextMerge.toString()+" − current height "+height.toString()+")</p><div class='bar'><i style='width:"+Math.max(0,Math.min(100,pct))+"%'></i></div>";
@@ -1046,18 +1051,18 @@ $("prepMerge").addEventListener("click", function(){
       if(dPos.nextMergeBlock!==null&&docsHeight!==null&&dPos.nextMergeBlock>docsHeight) problems.push("Donor #"+dRaw+" on-chain cooldown not reached.");
       html+="<p class='small' style='margin-top:8px'>Eligibility: same level "+(sPos.level!==null&&dPos.level!==null?(sPos.level===dPos.level?"✓ ("+sPos.level.toString()+")":"✕"):"unknown")+" · not at max ✓ checked · no pending power "+((sPos.pendingRound===0n&&dPos.pendingRound===0n)?"✓":"✕")+" · ownership re-read live ✓</p></div>";
       checks.innerHTML=html;
-      if(problems.length){ out.innerHTML="<div class='errbox'><strong>✕ Not mergeable:</strong><br>"+problems.map(esc).join("<br>")+"</div>"; msg.textContent="Merge stopped — see reasons. Nothing was prepared or retried."; return; }
+      if(problems.length){ out.innerHTML="<div class='errbox'><strong>✕ Not mergeable:</strong><br>"+problems.map(esc).join("<br>")+"</div>"; msg.textContent="Merge stopped. See the reasons below. Nothing was prepared or retried."; return; }
       var data=encodeMerge(sRaw, dRaw);
       simulate(CONFIG.contracts.mining.address, data, owner).then(function(sim){
-        if(!sim.ok){ out.innerHTML="<div class='errbox'><strong>Merge simulation failed:</strong> "+esc(sim.error)+"<br>Reported as-is — never retried with different IDs.</div>"; msg.textContent="Simulation failed."; return; }
+        if(!sim.ok){ out.innerHTML="<div class='errbox'><strong>Merge simulation failed:</strong> "+esc(sim.error)+"<br>Shown as-is and not retried with different IDs.</div>"; msg.textContent="Simulation failed."; return; }
         estimateGas(owner, CONFIG.contracts.mining.address, data).then(function(gas){
           $("fuseWrap").classList.add("go");
           var bundle=bundleJSON(owner, CONFIG.contracts.mining.address, data);
           var newLvl=Number(sPos.level)+1;
           out.innerHTML="<div class='notice'><strong>⚠ BURN WARNING:</strong> Squeek <strong>#"+esc(dRaw)+"</strong> will be <strong>permanently burned</strong> and cannot be restored. Squeek <strong>#"+esc(sRaw)+"</strong> survives, keeps its ID and image, and rises to Level "+newLvl+".</div>"
-            +"<div class='okbox' style='margin-top:10px'><strong>Simulation result: ✓ merge(0, "+esc(sRaw)+", "+esc(dRaw)+") simulated successfully</strong> from "+esc(owner)+". Estimated gas: "+esc(gas||"unknown — estimate unavailable")+". New survivor level: "+newLvl+".<br><span class='small'>Unsigned EIP-5792 bundle — review the burn warning, then sign in your own wallet. This page never signs.</span><pre>"+esc(bundle)+"</pre><button id='copyMergeBundle'>Copy bundle</button></div>";
+            +"<div class='okbox' style='margin-top:10px'><strong>Simulation result: ✓ merge(0, "+esc(sRaw)+", "+esc(dRaw)+") simulated successfully</strong> from "+esc(owner)+". Estimated gas: "+esc(gas||"unknown — estimate unavailable")+". New survivor level: "+newLvl+".<br><span class='small'>Unsigned EIP-5792 bundle. Read the burn warning, then sign in your own wallet. This page never signs.</span><pre>"+esc(bundle)+"</pre><button id='copyMergeBundle'>Copy bundle</button></div>";
           $("copyMergeBundle").addEventListener("click", function(){ copyText(bundle, msg); });
-          msg.textContent="Merge bundle prepared — unsigned. Donor #"+dRaw+" would be burned.";
+          msg.textContent="Merge bundle prepared, unsigned. Donor #"+dRaw+" would be burned.";
         });
       });
     });
@@ -1069,21 +1074,21 @@ $("prepCheckpoint").addEventListener("click", function(){
   if(!requireDeploy()){ gateMsg(msg); return; }
   msg.textContent="Reading checkpointStatus() live…";
   ethCall(CONFIG.contracts.mining.address, SEL.checkpointStatus).then(function(j){
-    if(!j || !j.result){ msg.textContent="checkpointStatus unavailable from all RPCs — unknown, not zero."; return; }
+    if(!j || !j.result){ msg.textContent="Couldn't read checkpointStatus from any RPC."; return; }
     var paused=wordAt(j.result,0)===1n; var nextRound=wordAt(j.result,1); var roundSettled=wordAt(j.result,2)===1n;
     var caller=$("walletInput").value.trim().toLowerCase();
     var callerOk=/^0x[0-9a-f]{40}$/.test(caller);
     var simFrom=callerOk?caller:CONFIG.operational.keeper;
     var base="<div class='card2'><p class='small'>checkpointStatus(): corePaused <strong>"+paused+"</strong> · nextRound <strong>"+(nextRound===null?"unknown":nextRound.toString())+"</strong> · roundSettled <strong>"+roundSettled+"</strong></p>";
-    if(paused){ out.innerHTML=base+"<p class='small'>SqueekCore is paused; checkpoints wait for unpause. Claims of already-funded SQK still work.</p></div>"; msg.textContent="Paused — nothing prepared."; return; }
+    if(paused){ out.innerHTML=base+"<p class='small'>SqueekCore is paused; checkpoints wait for unpause. Claims of already-funded SQK still work.</p></div>"; msg.textContent="Paused. Nothing prepared."; return; }
     if(!roundSettled){ out.innerHTML=base+"<p class='small'>Nothing to process: round "+(nextRound===null?"unknown":nextRound.toString())+" is not settled yet. No bundle prepared.</p></div>"; msg.textContent="No settled round waiting."; return; }
     simulate(CONFIG.contracts.mining.address, SEL.checkpoint, simFrom).then(function(sim){
-      if(!sim.ok){ out.innerHTML=base+"<p class='small'>Simulation failed: "+esc(sim.error)+"</p></div>"; msg.textContent="Simulation failed — reported, not retried."; return; }
+      if(!sim.ok){ out.innerHTML=base+"<p class='small'>Simulation failed: "+esc(sim.error)+"</p></div>"; msg.textContent="Simulation failed. Not retried."; return; }
       estimateGas(simFrom, CONFIG.contracts.mining.address, SEL.checkpoint).then(function(gas){
         var bundle=bundleJSON(callerOk?caller:"<your address>", CONFIG.contracts.mining.address, SEL.checkpoint);
-        out.innerHTML=base+"<p class='small'><strong>Simulation: ✓ checkpoint() succeeds.</strong> Estimated gas: "+esc(gas||"unknown — estimate unavailable")+". Simulated from "+esc(simFrom)+(callerOk?" (your address)":" (the Keeper address from sepolia.json, as an example caller — anyone can run a checkpoint; the caller pays gas and receives nothing)")+".</p><pre>"+esc(bundle)+"</pre><button id='copyCkpt'>Copy bundle</button></div>";
+        out.innerHTML=base+"<p class='small'><strong>Simulation: ✓ checkpoint() succeeds.</strong> Estimated gas: "+esc(gas||"unknown — estimate unavailable")+". Simulated from "+esc(simFrom)+(callerOk?" (your address)":" (the Keeper address from sepolia.json, used as an example caller; anyone can run a checkpoint, and the caller pays gas and gets nothing)")+".</p><pre>"+esc(bundle)+"</pre><button id='copyCkpt'>Copy bundle</button></div>";
         $("copyCkpt").addEventListener("click", function(){ copyText(bundle, msg); });
-        msg.textContent="Checkpoint bundle prepared — unsigned.";
+        msg.textContent="Checkpoint bundle prepared, unsigned.";
       });
     });
   });
@@ -1121,8 +1126,8 @@ $("makeShare").addEventListener("click", function(){
   cv.style.display="block";
   var url=cv.toDataURL("image/png"); var dl=$("shareDownload"); dl.href=url; dl.style.display="inline-block"; dl.setAttribute("download","living-squeek-"+sq.id+".png");
   var cp=$("copyShare"); cp.style.display="inline-block";
-  cp.onclick=function(){ copyText("My Living Squeek #"+sq.id+" — Stage "+(st===null?"unknown":st+" "+STAGES[st].name)+", Level "+(sq.known?sq.level:"unknown")+", Power "+(sq.known?fmt(sq.power):"unknown")+", "+(sq.known?sq.glyphs:"")+" — derived from settled round "+settled+" on Squeekchain (Sepolia).", $("shareMsg")); };
-  $("shareMsg").textContent="Share card ready — download it or copy the summary.";
+  cp.onclick=function(){ copyText("My Living Squeek #"+sq.id+" — Stage "+(st===null?"unknown":st+" "+STAGES[st].name)+", Level "+(sq.known?sq.level:"unknown")+", Power "+(sq.known?fmt(sq.power):"unknown")+", "+(sq.known?sq.glyphs:"")+", based on settled round "+settled+" on Squeekchain (Sepolia).", $("shareMsg")); };
+  $("shareMsg").textContent="Share card ready. Download it or copy the summary.";
 });
 /* ============ Wiring + init ============ */
 document.querySelectorAll(".squeek-chip").forEach(function(b){ b.addEventListener("click", function(){ selectSqueek(b.getAttribute("data-id")); }); });
@@ -1130,14 +1135,14 @@ $("loadBtn").addEventListener("click", function(){ selectSqueek($("tokenInput").
 $("loadBurrow").addEventListener("click", function(){ var v=$("burrowInput").value.trim().toLowerCase(); if(!/^0x[0-9a-f]{40}$/.test(v)){ $("burrowMsg").textContent="Enter a full 0x wallet address."; return; } loadBurrow(v); });
 $("refreshNet").addEventListener("click", refreshStatus);
 if($("refreshPower")) $("refreshPower").addEventListener("click", function(){ loadPowerReadout(); });
-function updateOnline(){ var on=navigator.onLine; var b=$("onlineBadge"); b.textContent=on?"Connection: online":"Connection: OFFLINE — showing dated snapshot; live values unknown, not zero"; b.className="badge "+(on?"snap":"bad"); }
+function updateOnline(){ var on=navigator.onLine; var b=$("onlineBadge"); b.textContent=on?"Connection: online":"Connection: offline. Showing the dated snapshot; live values are unknown"; b.className="badge "+(on?"snap":"bad"); }
 window.addEventListener("online", updateOnline); window.addEventListener("offline", updateOnline);
 updateOnline(); updateCountdown(); setInterval(updateCountdown, 1000);
 prevSettled=settled;
 render(); drawWheel(); requestAnimationFrame(tickWheel);
-renderPowerUnknown("Reading position() for the selected Squeek \u2014 shows unknown until the read succeeds.");
+renderPowerUnknown("Reading position() for the selected Squeek. Shows unknown until the read succeeds.");
 loadPowerReadout();
-loadEconomy(); refreshStatus(); loadEvents(); runDeployChecks();
+loadEconomy(); refreshStatus(); loadEvents(); runDeployChecks(); setInterval(function(){ if(!document.hidden){ refreshStatus(); } }, 30000);
 reqSeq++; tryLive("1", reqSeq);
 })();
 </script>
